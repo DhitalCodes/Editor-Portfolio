@@ -42,6 +42,7 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    cursor: none;
 }
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
@@ -523,6 +524,16 @@ body.cursor-hover .cursor-ring {
     animation: scrollWheel 2s ease-in-out infinite;
 }
 
+.head-logo-text{
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+}
+.frameby{
+    font-size: 2rem;
+}
 /* ═══ ABOUT SECTION ═══ */
 .about { background: transparent; }
 .about-grid {
