@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Frame By Aadi — Video Editor & Motion Designer</title>
+    <meta name="description" content="Aaditya Dhital — Video Editor & Motion Graphics Designer from Kathmandu, Nepal. Crafting visual stories that captivate.">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_logo/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_logo/favicon-16x16.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animation.css">
+</head>
+<body>
+
+<!-- ─── Ambient Background ─── -->
+<div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="noise"></div>
+</div>
+
+<!-- ─── Custom Cursor ─── -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── Navigation ─── -->
+<nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a href="#home" class="nav-logo">
+            </span><span class="logo-text">FrameByAadi.</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home" class="nav-link" data-label="Home">Home</a>
+            <a href="#about" class="nav-link" data-label="About">About</a>
+            <a href="#services" class="nav-link" data-label="Services">Services</a>
+            <a href="#portfolio" class="nav-link" data-label="Portfolio">Portfolio</a>
+            <a href="#contact" class="nav-link" data-label="Contact">Contact</a>
+        </div>
+
+        <a href="#contact" class="nav-cta">Hire Me</a>
+
+        <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ─── Mobile Menu ─── -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+        <a href="#home" class="mobile-link" data-close-menu>Home</a>
+        <a href="#about" class="mobile-link" data-close-menu>About</a>
+        <a href="#services" class="mobile-link" data-close-menu>Services</a>
+        <a href="#portfolio" class="mobile-link" data-close-menu>Portfolio</a>
+        <a href="#contact" class="mobile-link" data-close-menu>Contact</a>
+        <a href="#contact" class="btn-primary mobile-cta" data-close-menu>Hire Me</a>
+    </div>
+</div>
+
+<!-- ─────────────────────────────────── -->
+<!--            HERO SECTION             -->
+<!-- ─────────────────────────────────── -->
+<section id="home" class="hero">
+    <div class="container hero-container">
+
+        <div class="hero-text reveal-left">
+            <div class="hero-badge glass-pill">
+                <span class="badge-dot"></span>
+                Available for projects
+            </div>
+
+            <h1 class="hero-title">
+                I craft
+                <span class="gradient-text"> visual stories</span>
+                <br>that <em>captivate</em>
+            </h1>
+
+            <p class="hero-desc">
+                Hi, I'm <strong>Aaditya</strong> — a video editor & motion graphics designer from Kathmandu, Nepal. I turn ideas into compelling visual content that people actually watch.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#portfolio" class="btn-primary">
+                    <span>View My Work</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn-ghost">Let's Talk</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-num counter" data-count="60">0</span><span class="stat-sym">+</span>
+                    <span class="stat-label">Projects Done</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num counter" data-count="4">0</span><span class="stat-sym">+</span>
+                    <span class="stat-label">Years Exp.</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num counter" data-count="89">0</span><span class="stat-sym">%</span>
+                    <span class="stat-label">Satisfaction</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual reveal-right">
+            <div class="photo-wrapper">
+                <div class="photo-glow"></div>
+                <div class="photo-ring ring-1"></div>
+                <div class="photo-ring ring-2"></div>
+                <img src="assets/images/pp.jpeg" alt="Aaditya Dhital — Frame By Aadi" class="hero-photo">
+            </div>
+
+            <div class="float-card card-tl glass-card">
+                <i class="fas fa-film"></i>
+                <div>
+                    <strong>Motion Graphics</strong>
+                    <span>Animated & dynamic</span>
+                </div>
+            </div>
+
+            <div class="float-card card-br glass-card">
+                <i class="fas fa-play"></i>
+                <div>
+                    <strong>Video Editing</strong>
+                    <span>Story-driven cuts</span>
+                </div>
+            </div>
+
+            <div class="float-card card-r glass-card">
+                <i class="fas fa-image"></i>
+                <div>
+                    <strong>Thumbnails</strong>
+                    <span>Click-worthy designs</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="scroll-hint">
+        <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
+        </div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ─────────────────────────────────── -->
+<!--           ABOUT SECTION             -->
+<!-- ─────────────────────────────────── -->
+<section id="about" class="about section-pad">
+    <div class="container">
+
+        <div class="section-label reveal-up">About Me</div>
+        <h2 class="section-title reveal-up">The person behind the frame</h2>
+
+        <div class="about-grid">
+            <div class="about-left reveal-left">
+                <div class="glass-card about-card">
+                    <p class="about-intro">
+                        Hello! I'm <strong>Aaditya Dhital</strong>, a passionate video editor and motion graphics designer based in <strong>Kathmandu, Nepal</strong>.
+                    </p>
+                    <p>
+                        With a keen eye for detail and a deep love for visual storytelling, I specialise in creating content that doesn't just look good it <em>performs</em>. Whether it's a punchy YouTube video, a sleek motion reel, or a thumb-stopping thumbnail, I bring ideas to life with precision and intent.
+                    </p>
+                    <p>
+                        I believe the best editors are invisible you should feel the emotion, not see the cuts.
+                    </p>
+
+                    <div class="tools-row">
+                        <span class="tool-pill">DaVinci Resolve</span>
+                        <span class="tool-pill">Photoshop</span>
+                        <span class="tool-pill">Illustrator</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-right reveal-right">
+                <div class="process-list">
+                    <div class="process-item glass-card">
+                        <span class="process-num">01</span>
+                        <div>
+                            <h4>Understand</h4>
+                            <p>Deep dive into your brand, audience, and goals before a single cut.</p>
+                        </div>
+                    </div>
+                    <div class="process-item glass-card">
+                        <span class="process-num">02</span>
+                        <div>
+                            <h4>Create</h4>
+                            <p>Craft a narrative arc with precise editing, colour, and sound design.</p>
+                        </div>
+                    </div>
+                    <div class="process-item glass-card">
+                        <span class="process-num">03</span>
+                        <div>
+                            <h4>Refine</h4>
+                            <p>Iterate with your feedback until every frame earns its place.</p>
+                        </div>
+                    </div>
+                    <div class="process-item glass-card">
+                        <span class="process-num">04</span>
+                        <div>
+                            <h4>Deliver</h4>
+                            <p>Optimised exports, on time, every time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--          SERVICES SECTION           -->
+<section id="services" class="services section-pad">
+    <div class="container">
+
+        <div class="section-label reveal-up">What I Do</div>
+        <h2 class="section-title reveal-up">Services built to <span class="gradient-text">grow your brand</span></h2>
+
+        <div class="services-grid">
+
+            <div class="service-card glass-card reveal-up" style="--delay:0ms">
+                <div class="featured-badge">Most Popular</div>
+                <div class="service-icon-wrap">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h3>Video Editing</h3>
+                <p>Engaging, story-driven edits for YouTube, social media, and promotional content  with perfect pacing, seamless transitions, and professional colour grading.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> YouTube long-form & Shorts</li>
+                    <li><i class="fas fa-check"></i> Social media reels</li>
+                    <li><i class="fas fa-check"></i> Colour correction & grading</li>
+                    <li><i class="fas fa-check"></i> Sound design & mixing</li>
+                </ul>
+                <div class="service-glow"></div>
+            </div>
+
+            <div class="service-card glass-card reveal-up featured-service" style="--delay:100ms">
+                
+                <div class="service-icon-wrap">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h3>Motion Graphics</h3>
+                <p>Dynamic animated graphics that transform your content with visual polish, engaging kinetic typography, and cinematic visual effects your viewers can't ignore.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> Animated logos & intros</li>
+                    <li><i class="fas fa-check"></i> Kinetic typography</li>
+                    <li><i class="fas fa-check"></i> Explainer animations</li>
+                    <li><i class="fas fa-check"></i> Visual effects (VFX)</li>
+                </ul>
+                <div class="service-glow featured-glow"></div>
+            </div>
+
+            <div class="service-card glass-card reveal-up" style="--delay:200ms">
+                <div class="service-icon-wrap">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3>Thumbnail Design</h3>
+                <p>Psychology-backed, scroll-stopping thumbnail designs that increase click-through rates and faithfully represent your content's value proposition.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> YouTube thumbnails</li>
+                    <li><i class="fas fa-check"></i> High CTR composition</li>
+                    <li><i class="fas fa-check"></i> Brand consistency</li>
+                    <li><i class="fas fa-check"></i> A/B variant options</li>
+                </ul>
+                <div class="service-glow"></div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ─────────────────────────────────── -->
+<!--         PORTFOLIO SECTION           -->
+<!-- ─────────────────────────────────── -->
+<section id="portfolio" class="portfolio section-pad">
+    <div class="container">
+
+        <div class="section-label reveal-up">Work Showcase</div>
+        <h2 class="section-title reveal-up">Frames that speak for themselves</h2>
+
+        <div class="filters reveal-up">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="thumbnails">Thumbnails</button>
+            <button class="filter-btn" data-filter="motion">Motion</button>
+            <button class="filter-btn" data-filter="videos">Videos</button>
+            <button class="filter-btn" data-filter="reels">Reels</button>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+
+            <!-- ── Thumbnails ── -->
+            <div class="portfolio-item reveal-up" data-category="thumbnails">
+                <div class="port-img-wrap">
+                    <img src="assets/images/PT1.png" alt="YouTube Thumbnail – Personal">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Thumbnail</span>
+                            <h4>Bored</h4>
+                            <p>Aaditya Dhital</p>
+                        </div>
+                        <button class="port-expand" data-type="image" data-src="assets/images/PT1.png">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item reveal-up" data-category="thumbnails" style="--delay:60ms">
+                <div class="port-img-wrap">
+                    <img src="assets/images/PT2.png" alt="YouTube Thumbnail – BORED">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Thumbnail</span>
+                            <h4>Why I Started Reading</h4>
+                            <p>Aaditya Dhital</p>
+                        </div>
+                        <button class="port-expand" data-type="image" data-src="assets/images/PT2.png">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item reveal-up" data-category="thumbnails" style="--delay:120ms">
+                <div class="port-img-wrap">
+                    <img src="assets/images/PT3.png" alt="YouTube Thumbnail – Why I Started Reading">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Thumbnail</span>
+                            <h4>Who killed Mahendra?</h4>
+                            <p>EON</p>
+                        </div>
+                        <button class="port-expand" data-type="image" data-src="assets/images/PT3.png">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item reveal-up" data-category="thumbnails" style="--delay:180ms">
+                <div class="port-img-wrap">
+                    <img src="assets/images/PT4.jpg" alt="YouTube Thumbnail – Dristi Sharma">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Thumbnail</span>
+                            <h4>The Morning Output Rule</h4>
+                            <p>Dristi Sharma</p>
+                        </div>
+                        <button class="port-expand" data-type="image" data-src="assets/images/PT4.jpg">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item reveal-up" data-category="thumbnails" style="--delay:240ms">
+                <div class="port-img-wrap">
+                    <img src="assets/images/PT5.jpg" alt="YouTube Thumbnail – It's Going To Be Better">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Thumbnail</span>
+                            <h4>It's Going to be Better</h4>
+                            <p>Dristhi Sharma</p>
+                        </div>
+                        <button class="port-expand" data-type="image" data-src="assets/images/PT5.jpg">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item reveal-up" data-category="thumbnails" style="--delay:300ms">
+                <div class="port-img-wrap">
+                    <img src="assets/images/PT_6.png" alt="YouTube Thumbnail – Who Killed Mahendra?">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Thumbnail</span>
+                            <h4>Pagal Maha Kavi</h4>
+                            <p>The Nepali Comment</p>
+                        </div>
+                        <button class="port-expand" data-type="image" data-src="assets/images/PT_6.png">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Motion Graphics ── -->
+            <div class="portfolio-item reveal-up" data-category="motion">
+                <div class="port-img-wrap">
+                    <img src="https://img.youtube.com/vi/4JeswCTxxtE/maxresdefault.jpg" 
+                         onerror="this.src='https://img.youtube.com/vi/4JeswCTxxtE/hqdefault.jpg'"
+                         alt="Motion Graphics Short">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Motion Graphics</span>
+                            <h4>Motion Reel</h4>
+                            <p>Animated short</p>
+                        </div>
+                        <div class="port-actions">
+                            <button class="port-expand" data-type="video" data-video="4JeswCTxxtE" data-short="true">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <a href="https://youtube.com/shorts/4JeswCTxxtE" target="_blank" class="port-yt">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item reveal-up" data-category="motion" style="--delay:60ms">
+                <div class="port-img-wrap">
+                    <img src="https://img.youtube.com/vi/jebYdFeSxSQ/maxresdefault.jpg"
+                         onerror="this.src='https://img.youtube.com/vi/jebYdFeSxSQ/hqdefault.jpg'"
+                         alt="Motion Graphics Project">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Motion Graphics</span>
+                            <h4>Dynamic Visual</h4>
+                            <p>Motion design project</p>
+                        </div>
+                        <div class="port-actions">
+                            <button class="port-expand" data-type="video" data-video="jebYdFeSxSQ">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <a href="https://youtu.be/jebYdFeSxSQ" target="_blank" class="port-yt">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Storytelling Reels ── -->
+            <div class="portfolio-item reveal-up" data-category="reels">
+                <div class="port-img-wrap">
+                    <img src="https://img.youtube.com/vi/sZJepscNWSE/maxresdefault.jpg"
+                         onerror="this.src='https://img.youtube.com/vi/sZJepscNWSE/hqdefault.jpg'"
+                         alt="Storytelling Reel">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Storytelling Reel</span>
+                            <h4>Story Short</h4>
+                            <p>Narrative editing</p>
+                        </div>
+                        <div class="port-actions">
+                            <button class="port-expand" data-type="video" data-video="sZJepscNWSE" data-short="true">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <a href="https://youtube.com/shorts/sZJepscNWSE" target="_blank" class="port-yt">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Video Projects ── -->
+            <div class="portfolio-item reveal-up" data-category="videos">
+                <div class="port-img-wrap">
+                    <img src="https://img.youtube.com/vi/BNxrlVX93dE/hqdefault.jpg"
+                         alt="Personal Video – Frame By Aadi">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Video Project</span>
+                            <h4>My Personal Video</h4>
+                            <p>Self-directed production</p>
+                        </div>
+                        <div class="port-actions">
+                            <button class="port-expand" data-type="video" data-video="BNxrlVX93dE">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <a href="https://youtu.be/BNxrlVX93dE" target="_blank" class="port-yt">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item reveal-up" data-category="videos" style="--delay:60ms">
+                <div class="port-img-wrap">
+                    <img src="https://img.youtube.com/vi/Kw_8AM_ggi4/hqdefault.jpg"
+                         alt="Creative Video Project">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Video Project</span>
+                            <h4>Creative Project</h4>
+                            <p>Full production edit</p>
+                        </div>
+                        <div class="port-actions">
+                            <button class="port-expand" data-type="video" data-video="Kw_8AM_ggi4">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <a href="https://youtu.be/Kw_8AM_ggi4" target="_blank" class="port-yt">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /portfolio-grid -->
+
+    </div>
+</section>
+
+<!--    CONTACT SECTION  -->
+
+<section id="contact" class="contact section-pad">
+    <div class="container">
+
+        <div class="section-label reveal-up">Get In Touch</div>
+        <h2 class="section-title reveal-up">Let's build something <span class="gradient-text">great together</span></h2>
+
+        <div class="contact-grid">
+
+            <div class="contact-left reveal-left">
+                <div class="glass-card contact-info-card">
+                    <p class="contact-pitch">
+                        I'm currently open to new projects. Whether you're a creator looking for a long-term editor or a brand that needs a one-off video, I'd love to hear from you.
+                    </p>
+
+                    <div class="contact-detail-list">
+                        <div class="contact-detail-item">
+                            <div class="contact-icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <span class="detail-label">Location</span>
+                                <span class="detail-val">Kathmandu, Nepal</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="contact-icon-wrap"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <span class="detail-label">Email</span>
+                                <p class="detail-val-email">editoraadityaa@gmail.com</p>
+                                <div id="copy-toast">Just click on email to copy !</div>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="contact-icon-wrap"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <span class="detail-label">Response Time</span>
+                                <span class="detail-val">Within 24 hours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-block">
+                        <p class="social-label">Find me online</p>
+                        <div class="social-row">
+                            <a href="https://www.youtube.com/@framebyaadioff" target="_blank" class="social-btn" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="https://www.instagram.com/framebyaadi/" target="_blank" class="social-btn" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/aaditya-dhital-a1789036b/" target="_blank" class="social-btn" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-right reveal-right">
+                <div class="glass-card contact-form-card">
+                    <form id="contactForm" action="https://formspree.io/f/xkgppvya" method="POST" target="_blank">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <input type="text" id="fname" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-field">
+                                <input type="email" id="femail" name="email" placeholder="Your Email Address" required>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <input type="text" id="fsubject" name="subject" placeholder=" " required>
+                            <label for="fsubject">Subject</label>
+                        </div>
+                        <div class="form-field">
+                            <textarea id="fmessage" name="message" rows="5" placeholder=" " required></textarea>
+                            <label for="fmessage">Tell me about your project</label>
+                        </div>
+                        <button type="submit" class="btn-primary full-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!--   FOOTER   -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#home" class="footer-logo">
+                    <span>FrameByAadi.</span>
+                </a>
+                <p>Creating visual stories that captivate and inspire audiences around the world.</p>
+            </div>
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.youtube.com/@framebyaadioff" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/framebyaadi/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/aaditya-dhital-a1789036b/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Aaditya Dhital · Frame By Aadi · All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ─── Back to Top ─── -->
+<button id="backToTop" class="back-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- ─── Media Modal ─── -->
+<div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-box" id="modalBox">
+        <button class="modal-close" id="modalClose" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content-wrap" id="modalContent"></div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/animations.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* ═══════════════════════════════════════════════════
+   Frame By Aadi — Animation CSS
+═══════════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%       { transform: translate(30px, -30px) scale(1.05); }
+    66%       { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+@keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 8px #22c55e, 0 0 0 0 rgba(34,197,94,0.4); }
+    50%       { box-shadow: 0 0 8px #22c55e, 0 0 0 8px rgba(34,197,94,0); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.18; transform: scale(1); }
+    50%       { opacity: 0.28; transform: scale(1.08); }
+}
+
+@keyframes ringPulse {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50%       { opacity: 0.04; transform: scale(1.06); }
+}
+
+@keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+.card-r { animation: floatYCenter 4s ease-in-out infinite 0.75s !important; }
+@keyframes floatYCenter {
+    0%, 100% { transform: translateY(-50%); }
+    50%       { transform: translateY(calc(-50% - 10px)); }
+}
+
+@keyframes scrollWheel {
+    0%   { opacity: 1; transform: translateY(0); }
+    60%  { opacity: 0; transform: translateY(8px); }
+    61%  { opacity: 0; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Counter Highlight ── */
+@keyframes countUp { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── Page Load Fade ── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Shimmer (for loading states) ── */
+@keyframes shimmer {
+    from { background-position: -200% center; }
+    to   { background-position:  200% center; }
+}
+
+/* ── Spinner ── */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════
+   Scroll Reveal Utility Classes
+══════════════════════════════════════ */
+
+/* Base state — hidden */
+.reveal-up,
+.reveal-left,
+.reveal-right {
+    opacity: 0;
+    will-change: opacity, transform;
+    transition: opacity 0.7s cubic-bezier(.25,.8,.25,1),
+                transform 0.7s cubic-bezier(.25,.8,.25,1);
+}
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+
+/* Visible state */
+.reveal-up.in-view,
+.reveal-left.in-view,
+.reveal-right.in-view {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Stagger delays — applied via inline --delay CSS var */
+.reveal-up[style*='--delay'],
+.reveal-left[style*='--delay'],
+.reveal-right[style*='--delay'] {
+    transition-delay: var(--delay, 0ms);
+}
+
+/* Portfolio item specific */
+.portfolio-item {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.6s cubic-bezier(.25,.8,.25,1),
+                transform 0.6s cubic-bezier(.25,.8,.25,1);
+}
+.portfolio-item.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.portfolio-item[style*='--delay'] { transition-delay: var(--delay, 0ms); }
+
+/* Service card micro-anim */
+.service-card {
+    transition: background 0.3s, border-color 0.3s,
+                transform 0.4s cubic-bezier(.25,.8,.25,1),
+                box-shadow 0.4s;
+}
+
+/* Process item hover slide */
+.process-item {
+    transform: translateX(0);
+    transition: transform 0.35s cubic-bezier(.25,.8,.25,1),
+                background 0.35s, border-color 0.35s;
+}
+.process-item:hover { transform: translateX(6px); }
+
+/* Navbar link underline sweep */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 14px; right: 14px;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.nav-link:hover::before { transform: scaleX(1); }
+.nav-link.active::before { transform: scaleX(0); } /* uses dot instead */
+
+/* Filter button animation */
+.filter-btn { transition: all 0.25s cubic-bezier(.25,.8,.25,1); }
+.filter-btn.active { animation: filterPop 0.3s cubic-bezier(.34,1.56,.64,1); }
+@keyframes filterPop {
+    from { transform: scale(0.9); }
+    to   { transform: scale(1); }
+}
+
+/* Portfolio item hide/show */
+.portfolio-item.hide {
+    opacity: 0 !important;
+    transform: scale(0.9) !important;
+    pointer-events: none;
+    display: none;
+}
+
+/* Social button icon wiggle on hover */
+.social-btn:hover i {
+    animation: wiggle 0.4s ease-in-out;
+}
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25%       { transform: rotate(-8deg); }
+    75%       { transform: rotate(8deg); }
+}
+
+/* Floating card stagger */
+.card-tl { animation-delay: 0s !important; }
+.card-br { animation-delay: 1.5s !important; }
+
+/* Hero section entry */
+.hero-text { animation: fadeIn 0.9s cubic-bezier(.25,.8,.25,1) both; }
+.hero-visual { animation: fadeIn 0.9s cubic-bezier(.25,.8,.25,1) 0.2s both; }
+
+/* Back-to-top pulse */
+.back-top.visible {
+    animation: btPulse 2s ease-in-out 2s infinite;
+}
+@keyframes btPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(0,212,255,0.4); }
+    50%       { box-shadow: 0 4px 32px rgba(0,212,255,0.7); }
+}
+
+/* Modal appear */
+.modal-backdrop { transition: opacity 0.35s cubic-bezier(.25,.8,.25,1); }
+.modal-box { transition: transform 0.35s cubic-bezier(.34,1.2,.64,1); }
+
+/* Gradient text shimmer (optional hero accent) */
+.hero-title .gradient-text {
+    background-size: 200% auto;
+    animation: gradientShift 4s linear infinite;
+}
+@keyframes gradientShift {
+    0%   { background-position: 0% center; }
+    50%  { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
