@@ -1,6 +1,6 @@
-/* ═══════════════════════════════════════════════════
-   Frame By Aadi — Animation CSS
-═══════════════════════════════════════════════════ */
+
+   /* Frame By Aadi — Animation CSS */
+
 
 /* ── Keyframes ── */
 @keyframes orbFloat {
@@ -62,9 +62,9 @@
     to   { transform: rotate(360deg); }
 }
 
-/* ══════════════════════════════════════
-   Scroll Reveal Utility Classes
-══════════════════════════════════════ */
+
+/* Scroll Reveal Utility Classes */
+
 
 /* Base state — hidden */
 .reveal-up,

@@ -1,17 +1,12 @@
-/* ═══════════════════════════════════════════════════
-   Frame By Aadi — Main JavaScript
-   Features: cursor, nav, counter, filter, modal, back-to-top
-═══════════════════════════════════════════════════ */
-
 (function () {
     'use strict';
 
     /* ── Prevent text selection ── */
     addEventListener('selectstart', (e) => e.preventDefault());
 
-    /* ════════════════════════════════
-       1. CUSTOM CURSOR
-    ════════════════════════════════ */
+  
+    //    1. CUSTOM CURSOR
+
     const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
     let mouseX = 0, mouseY = 0;
@@ -44,9 +39,9 @@
     });
 
 
-    /* ════════════════════════════════
-       2. NAVBAR SCROLL & MOBILE MENU
-    ════════════════════════════════ */
+    
+    //    2. NAVBAR SCROLL & MOBILE MENU
+  
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('navHamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -76,9 +71,8 @@
     });
 
 
-    /* ════════════════════════════════
-       3. ANIMATED COUNTER
-    ════════════════════════════════ */
+    //    3. ANIMATED COUNTER
+
     const counters = document.querySelectorAll('.counter');
 
     const runCounter = (el) => {
@@ -102,9 +96,9 @@
     counters.forEach((c) => counterObserver.observe(c));
 
 
-    /* ════════════════════════════════
-       4. PORTFOLIO FILTER
-    ════════════════════════════════ */
+    
+    //    4. PORTFOLIO FILTER
+   
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portItems = document.querySelectorAll('.portfolio-item');
 
@@ -134,9 +128,8 @@
     });
 
 
-    /* ════════════════════════════════
-       5. MODAL (Image & Video)
-    ════════════════════════════════ */
+    //    5. MODAL (Image & Video)
+   
     const backdrop = document.getElementById('modalBackdrop');
     const modalBox = document.getElementById('modalBox');
     const modalContent = document.getElementById('modalContent');
@@ -181,16 +174,16 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
 
-    /* ════════════════════════════════
-       6. BACK TO TOP
-    ════════════════════════════════ */
+    
+    //    6. BACK TO TOP
+    
     const backTop = document.getElementById('backToTop');
     backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 
-    /* ════════════════════════════════
-       7. SMOOTH SECTION LINKS
-    ════════════════════════════════ */
+  
+    //    7. SMOOTH SECTION LINKS
+  
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
         a.addEventListener('click', (e) => {
             const target = document.querySelector(a.getAttribute('href'));
@@ -202,9 +195,8 @@
     });
 
 
-    /* ════════════════════════════════
-       8. CONTACT FORM FEEDBACK
-    ════════════════════════════════ */
+
+    //    8. CONTACT FORM FEEDBACK
     const form = document.getElementById('contactForm');
     if (form) {
         form.addEventListener('submit', () => {

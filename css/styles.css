@@ -1,8 +1,3 @@
-/* ═══════════════════════════════════════════════════
-   Frame By Aadi — Premium Portfolio CSS
-   Theme: Apple Glass UI · Dark Mode · Poppins
-═══════════════════════════════════════════════════ */
-
 /* ── Tokens ── */
 :root {
     --accent: #00d4ff;
@@ -1005,4 +1000,5 @@ body.cursor-hover .cursor-ring {
 .detail-val-email {
     color: var(--accent);
     font-weight: 600;
+    cursor: pointer;
 }

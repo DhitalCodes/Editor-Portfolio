@@ -1,6 +1,5 @@
-/* ═══════════════════════════════════════════════════
-   Frame By Aadi — Scroll Reveal Animations
-═══════════════════════════════════════════════════ */
+// Scroll Reveal Animations
+
 
 (function () {
     'use strict';
