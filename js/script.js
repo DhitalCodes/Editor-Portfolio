@@ -161,10 +161,11 @@
             openModal(`<img src="${src}" alt="Portfolio image" loading="lazy">`);
         } else if (type === 'video') {
             const id = btn.dataset.video;
+            const videoTitle = btn.closest('.port-overlay')?.querySelector('.port-meta h4')?.textContent || 'YouTube video';
             if (isShort) {
-                openModal(`<iframe class="short-frame" src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
+                openModal(`<iframe class="short-frame" src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="${videoTitle}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
             } else {
-                openModal(`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
+                openModal(`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="${videoTitle}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
             }
         }
     });
