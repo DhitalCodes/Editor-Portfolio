@@ -26,7 +26,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://framebyaadi.vercel.app/">
-    <meta name="twitter:title" content="FrameByAadi | Aaditya Dhital – Video Editor & Motion Graphics Designer">
+    <meta name="twitter:title" content="FrameByAadi">
     <meta name="twitter:description" content="Professional Video Editor & Motion Graphics Designer from Kathmandu, Nepal. Specializing in YouTube content, social media reels, and motion graphics.">
     <meta name="twitter:image" content="https://framebyaadi.vercel.app/assets/images/pp.jpeg">
 
@@ -649,8 +649,11 @@
                             <div class="contact-icon-wrap"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <span class="detail-label">Email</span>
-                                <p class="detail-val-email">editoraadityaa@gmail.com</p>
-                                <div id="copy-toast">Just click on email to copy !</div>
+                                <button type="button" class="detail-val-email" id="copyEmailBtn" aria-describedby="copy-toast">
+                                    <span>editoraadityaa@gmail.com</span>
+                                    <i class="fas fa-copy" aria-hidden="true"></i>
+                                </button>
+                                <div id="copy-toast">Tap to copy email</div>
                             </div>
                         </div>
                         <div class="contact-detail-item">
@@ -687,10 +690,14 @@
                     <form id="contactForm" action="https://formspree.io/f/xkgppvya" method="POST" target="_blank">
                         <div class="form-row">
                             <div class="form-field">
-                                <input type="text" id="fname" name="name" placeholder="Your Name" required>
+                                <input type="text" id="fname" name="name" placeholder=" " autocomplete="name" minlength="2" required>
+                                <label for="fname">Your Name</label>
+                                <div class="field-feedback" id="fnameFeedback" aria-live="polite"></div>
                             </div>
                             <div class="form-field">
-                                <input type="email" id="femail" name="email" placeholder="Your Email Address" required>
+                                <input type="email" id="femail" name="email" placeholder=" " autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required>
+                                <label for="femail">Your Email Address</label>
+                                <div class="field-feedback" id="femailFeedback" aria-live="polite"></div>
                             </div>
                         </div>
                         <div class="form-field">

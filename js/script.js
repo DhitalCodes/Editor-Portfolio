@@ -134,6 +134,7 @@
     const modalBox = document.getElementById('modalBox');
     const modalContent = document.getElementById('modalContent');
     const modalClose = document.getElementById('modalClose');
+    const portfolioGrid = document.getElementById('portfolioGrid');
 
     function openModal(html) {
         modalContent.innerHTML = html;
@@ -147,28 +148,74 @@
         setTimeout(() => { modalContent.innerHTML = ''; }, 350);
     }
 
-    // Open from portfolio expand buttons
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.port-expand');
-        if (!btn) return;
-        e.preventDefault();
+    function openPortfolioPreview(triggerEl) {
+        if (!triggerEl) return;
 
-        const type = btn.dataset.type;
-        const isShort = btn.dataset.short === 'true';
+        const type = triggerEl.dataset.type;
+        const isShort = triggerEl.dataset.short === 'true';
 
         if (type === 'image') {
-            const src = btn.dataset.src;
+            const src = triggerEl.dataset.src;
             openModal(`<img src="${src}" alt="Portfolio image" loading="lazy">`);
-        } else if (type === 'video') {
-            const id = btn.dataset.video;
-            const videoTitle = btn.closest('.port-overlay')?.querySelector('.port-meta h4')?.textContent || 'YouTube video';
+            return;
+        }
+
+        if (type === 'video') {
+            const id = triggerEl.dataset.video;
+            const videoTitle = triggerEl.closest('.port-overlay')?.querySelector('.port-meta h4')?.textContent || 'YouTube video';
             if (isShort) {
                 openModal(`<iframe class="short-frame" src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="${videoTitle}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
             } else {
                 openModal(`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="${videoTitle}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
             }
         }
-    });
+    }
+
+    if (portfolioGrid) {
+        const wraps = portfolioGrid.querySelectorAll('.port-img-wrap');
+
+        // Make each thumbnail keyboard-focusable and screen-reader discoverable.
+        wraps.forEach((wrap) => {
+            const title = wrap.querySelector('.port-meta h4')?.textContent?.trim() || 'Portfolio preview';
+            wrap.setAttribute('tabindex', '0');
+            wrap.setAttribute('role', 'button');
+            wrap.setAttribute('aria-label', `Open preview: ${title}`);
+        });
+
+        // Single click/tap anywhere on the thumbnail opens preview.
+        portfolioGrid.addEventListener('click', (e) => {
+            if (e.target.closest('.port-yt')) return;
+
+            const expandBtn = e.target.closest('.port-expand');
+            if (expandBtn) {
+                e.preventDefault();
+                openPortfolioPreview(expandBtn);
+                return;
+            }
+
+            const wrap = e.target.closest('.port-img-wrap');
+            if (!wrap) return;
+
+            const trigger = wrap.querySelector('.port-expand');
+            if (!trigger) return;
+
+            e.preventDefault();
+            openPortfolioPreview(trigger);
+        });
+
+        // Keyboard support: Enter or Space opens the focused thumbnail.
+        portfolioGrid.addEventListener('keydown', (e) => {
+            if (e.target.closest('.port-expand, .port-yt')) return;
+
+            const wrap = e.target.closest('.port-img-wrap');
+            if (!wrap) return;
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+
+            e.preventDefault();
+            const trigger = wrap.querySelector('.port-expand');
+            openPortfolioPreview(trigger);
+        });
+    }
 
     modalClose.addEventListener('click', closeModal);
     backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
@@ -200,7 +247,86 @@
     //    8. CONTACT FORM FEEDBACK
     const form = document.getElementById('contactForm');
     if (form) {
-        form.addEventListener('submit', () => {
+        const nameInput = document.getElementById('fname');
+        const emailInput = document.getElementById('femail');
+        const nameFeedback = document.getElementById('fnameFeedback');
+        const emailFeedback = document.getElementById('femailFeedback');
+
+        const setFieldState = (inputEl, feedbackEl, state, message = '') => {
+            const field = inputEl?.closest('.form-field');
+            if (!field || !feedbackEl) return;
+
+            field.classList.remove('is-valid', 'is-invalid');
+            inputEl.removeAttribute('aria-invalid');
+
+            feedbackEl.textContent = message;
+
+            if (!state) return;
+
+            if (state === 'valid') {
+                field.classList.add('is-valid');
+            } else if (state === 'invalid') {
+                field.classList.add('is-invalid');
+                inputEl.setAttribute('aria-invalid', 'true');
+            }
+        };
+
+        const validateName = () => {
+            if (!nameInput) return true;
+
+            const value = nameInput.value.trim();
+            const namePattern = /^[A-Za-z][A-Za-z\s.'-]{1,}$/;
+
+            if (!value) {
+                setFieldState(nameInput, nameFeedback, null);
+                return false;
+            }
+
+            if (value.length < 2 || !namePattern.test(value)) {
+                setFieldState(nameInput, nameFeedback, 'invalid', 'Please enter a valid full name.');
+                return false;
+            }
+
+            setFieldState(nameInput, nameFeedback, 'valid');
+            return true;
+        };
+
+        const validateEmail = () => {
+            if (!emailInput) return true;
+
+            const value = emailInput.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+            if (!value) {
+                setFieldState(emailInput, emailFeedback, null);
+                return false;
+            }
+
+            if (!emailPattern.test(value)) {
+                setFieldState(emailInput, emailFeedback, 'invalid', 'Please enter a valid email address.');
+                return false;
+            }
+
+            setFieldState(emailInput, emailFeedback, 'valid');
+            return true;
+        };
+
+        nameInput?.addEventListener('input', validateName);
+        emailInput?.addEventListener('input', validateEmail);
+        nameInput?.addEventListener('blur', validateName);
+        emailInput?.addEventListener('blur', validateEmail);
+
+        form.addEventListener('submit', (e) => {
+            const nameOk = validateName();
+            const emailOk = validateEmail();
+
+            if (!nameOk || !emailOk) {
+                e.preventDefault();
+                const focusTarget = !nameOk ? nameInput : emailInput;
+                focusTarget?.focus();
+                return;
+            }
+
             const btn = form.querySelector('button[type="submit"]');
             btn.innerHTML = '<span>Sending…</span><i class="fas fa-spinner fa-spin"></i>';
             btn.disabled = true;
@@ -210,10 +336,83 @@
             }, 1200);
         });
     }
-    document.querySelector(".detail-val-email").addEventListener("click", function () {
-        const email = this.textContent;
-        navigator.clipboard.writeText(email);
-    });
+    const emailCopyEl = document.getElementById('copyEmailBtn');
+    const copyToast = document.getElementById('copy-toast');
+    let copyToastTimer;
+
+    const showCopyFeedback = (message, isSuccess = true) => {
+        if (!copyToast) return;
+
+        copyToast.textContent = message;
+        copyToast.classList.add('show');
+        copyToast.classList.toggle('error', !isSuccess);
+
+        clearTimeout(copyToastTimer);
+        copyToastTimer = setTimeout(() => {
+            copyToast.classList.remove('show', 'error');
+            copyToast.textContent = 'Tap to copy email';
+        }, 2200);
+    };
+
+    const copyWithFallback = async (text) => {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+        }
+
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        textarea.style.pointerEvents = 'none';
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        let copied = false;
+        try {
+            copied = document.execCommand('copy');
+        } finally {
+            document.body.removeChild(textarea);
+        }
+
+        return copied;
+    };
+
+    if (emailCopyEl) {
+        if (copyToast) {
+            copyToast.setAttribute('role', 'status');
+            copyToast.setAttribute('aria-live', 'polite');
+            copyToast.textContent = 'Tap to copy email';
+        }
+
+        emailCopyEl.addEventListener('click', async () => {
+            const email = emailCopyEl.querySelector('span')?.textContent.trim() || emailCopyEl.textContent.trim();
+            try {
+                const copied = await copyWithFallback(email);
+                if (!copied) throw new Error('Copy command failed.');
+
+                if (navigator.vibrate) navigator.vibrate(18);
+                emailCopyEl.classList.add('copied');
+                showCopyFeedback('Copied! Email is now on your clipboard.');
+                setTimeout(() => emailCopyEl.classList.remove('copied'), 1200);
+            } catch (error) {
+                showCopyFeedback('Copy failed. Long-press or use Ctrl+C.', false);
+            }
+        });
+
+        emailCopyEl.addEventListener('mouseenter', () => {
+            if (copyToast && !copyToast.classList.contains('show')) {
+                copyToast.textContent = 'Click to copy email';
+            }
+        });
+
+        emailCopyEl.addEventListener('mouseleave', () => {
+            if (copyToast && !copyToast.classList.contains('show')) {
+                copyToast.textContent = 'Tap to copy email';
+            }
+        });
+    }
 
     console.log('Frame By Aadi loaded.');
 })();
