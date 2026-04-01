@@ -5,42 +5,7 @@
     addEventListener('selectstart', (e) => e.preventDefault());
 
   
-    //    1. CUSTOM CURSOR
-
-    const dot = document.getElementById('cursorDot');
-    const ring = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-    let raf;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        dot.style.left = mouseX + 'px';
-        dot.style.top = mouseY + 'px';
-    });
-
-    function animateRing() {
-        ringX += (mouseX - ringX) * 0.14;
-        ringY += (mouseY - ringY) * 0.14;
-        ring.style.left = ringX + 'px';
-        ring.style.top = ringY + 'px';
-        raf = requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    /* Hover effect on interactive elements */
-    const hoverEls = document.querySelectorAll(
-        'a, button, .filter-btn, .port-expand, .port-yt, .portfolio-item, .service-card'
-    );
-    hoverEls.forEach((el) => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
-
-
-    
-    //    2. NAVBAR SCROLL & MOBILE MENU
+    //    1. NAVBAR SCROLL & MOBILE MENU
   
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('navHamburger');
@@ -71,7 +36,7 @@
     });
 
 
-    //    3. ANIMATED COUNTER
+    //    2. ANIMATED COUNTER
 
     const counters = document.querySelectorAll('.counter');
 
@@ -97,7 +62,7 @@
 
 
     
-    //    4. PORTFOLIO FILTER
+    //    3. PORTFOLIO FILTER
    
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portItems = document.querySelectorAll('.portfolio-item');
@@ -128,7 +93,7 @@
     });
 
 
-    //    5. MODAL (Image & Video)
+    //    4. MODAL (Image & Video)
    
     const backdrop = document.getElementById('modalBackdrop');
     const modalBox = document.getElementById('modalBox');
