@@ -15,7 +15,7 @@
 
     const THEME_STORAGE_KEY = 'site-theme';
     const rootBody = document.body;
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
     const applyTheme = (theme) => {
         const nextTheme = theme === 'light' ? 'light' : 'dark';
@@ -49,7 +49,7 @@
     initializeTheme();
 
     themeToggle?.addEventListener('click', () => {
-        const currentTheme = rootBody.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        const currentTheme = rootBody.getAttribute('data-theme') || 'dark';
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
         applyTheme(nextTheme);
         localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
