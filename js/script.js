@@ -56,19 +56,15 @@
 
     initializeTheme();
 
-    themeToggle?.addEventListener('click', () => {
+    const handleThemeToggle = () => {
         const currentTheme = rootBody.getAttribute('data-theme') || 'dark';
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
         applyTheme(nextTheme);
         localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    });
+    };
 
-    mobileThemeToggle?.addEventListener('click', () => {
-        const currentTheme = rootBody.getAttribute('data-theme') || 'dark';
-        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-        applyTheme(nextTheme);
-        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    });
+    themeToggle?.addEventListener('click', handleThemeToggle);
+    mobileThemeToggle?.addEventListener('click', handleThemeToggle);
 
     // Scroll state
     window.addEventListener('scroll', () => {
