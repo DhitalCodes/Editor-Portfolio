@@ -390,6 +390,30 @@ ul { list-style: none; }
     align-items: center;
     gap: 8px;
 }
+.mobile-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 180px;
+    margin-bottom: 10px;
+    padding: 10px 16px;
+    border: 1px solid var(--theme-toggle-border);
+    border-radius: var(--radius-pill);
+    background: var(--theme-toggle-bg);
+    color: var(--theme-toggle-color);
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.mobile-theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--theme-toggle-hover-bg);
+}
+.mobile-theme-toggle i {
+    font-size: 0.92rem;
+}
 .mobile-link {
     font-size: 1.6rem;
     font-weight: 700;

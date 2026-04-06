@@ -12,6 +12,7 @@
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLinks = document.querySelectorAll('[data-close-menu]');
     const themeToggle = document.getElementById('themeToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
 
     const THEME_STORAGE_KEY = 'site-theme';
     const rootBody = document.body;
@@ -22,21 +23,27 @@
         if (nextTheme !== 'light' && nextTheme !== 'dark') nextTheme = 'dark';
         rootBody.setAttribute('data-theme', nextTheme);
 
-        if (!themeToggle) return;
-
-        const icon = themeToggle.querySelector('i');
-        const label = themeToggle.querySelector('.theme-toggle-label');
         const isLight = nextTheme === 'light';
+        const toggles = [themeToggle, mobileThemeToggle].filter(Boolean);
 
-        themeToggle.setAttribute('aria-pressed', String(isLight));
-        themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+        toggles.forEach((toggle) => {
+            const icon = toggle.querySelector('i');
+            const label = toggle.querySelector('.theme-toggle-label');
+            const isMobileToggle = toggle === mobileThemeToggle;
 
-        if (label) label.textContent = isLight ? 'Day' : 'Night';
+            toggle.setAttribute('aria-pressed', String(isLight));
+            toggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
 
-        if (icon) {
-            icon.classList.remove('fa-moon', 'fa-sun');
-            icon.classList.add(isLight ? 'fa-sun' : 'fa-moon');
-        }
+            if (label) {
+                if (isMobileToggle) label.textContent = isLight ? 'Day Mode' : 'Night Mode';
+                else label.textContent = isLight ? 'Day' : 'Night';
+            }
+
+            if (icon) {
+                icon.classList.remove('fa-moon', 'fa-sun');
+                icon.classList.add(isLight ? 'fa-sun' : 'fa-moon');
+            }
+        });
     };
 
     const initializeTheme = () => {
@@ -50,6 +57,13 @@
     initializeTheme();
 
     themeToggle?.addEventListener('click', () => {
+        const currentTheme = rootBody.getAttribute('data-theme') || 'dark';
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        applyTheme(nextTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    });
+
+    mobileThemeToggle?.addEventListener('click', () => {
         const currentTheme = rootBody.getAttribute('data-theme') || 'dark';
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
         applyTheme(nextTheme);
