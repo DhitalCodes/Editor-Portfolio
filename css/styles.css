@@ -1044,7 +1044,7 @@ ul { list-style: none; }
 
 @media (max-width: 768px) {
     .nav-links, .nav-cta { display: none; }
-    .nav-theme-toggle { margin-left: auto; margin-right: 10px; }
+    .nav-theme-toggle { margin-left: auto; margin-right: 12px; }
     .nav-hamburger { display: flex; }
     .hero-container { grid-template-columns: 1fr; text-align: center; gap: 48px; }
     .reveal-left, .reveal-right { transform: translateY(30px) !important; }

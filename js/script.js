@@ -18,7 +18,8 @@
     const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
     const applyTheme = (theme) => {
-        const nextTheme = theme === 'light' ? 'light' : 'dark';
+        let nextTheme = theme;
+        if (nextTheme !== 'light' && nextTheme !== 'dark') nextTheme = 'dark';
         rootBody.setAttribute('data-theme', nextTheme);
 
         if (!themeToggle) return;
