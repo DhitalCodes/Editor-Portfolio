@@ -759,6 +759,34 @@
     <i class="fas fa-chevron-up"></i>
 </button>
 
+<!-- ─── AI Chatbot ─── -->
+<button id="chatbotToggle" class="chatbot-toggle" aria-label="Open AI chat" aria-controls="chatbotPanel" aria-expanded="false">
+    <i class="fas fa-robot" aria-hidden="true"></i>
+    <span>AI Chat</span>
+</button>
+
+<section id="chatbotPanel" class="chatbot-panel" aria-label="AI chatbot" aria-hidden="true">
+    <div class="chatbot-head">
+        <div class="chatbot-title-wrap">
+            <h3>AI Assistant</h3>
+            <p>Ask about services, pricing, or turnaround time.</p>
+        </div>
+        <button id="chatbotClose" class="chatbot-close" aria-label="Close AI chat">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <ul id="chatbotMessages" class="chatbot-messages" aria-live="polite"></ul>
+
+    <form id="chatbotForm" class="chatbot-form" autocomplete="off">
+        <label for="chatbotInput" class="sr-only">Type your message</label>
+        <input id="chatbotInput" type="text" placeholder="Type a message..." maxlength="250" required>
+        <button id="chatbotSend" type="submit" aria-label="Send message">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </form>
+</section>
+
 <!-- ─── Media Modal ─── -->
 <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal-box" id="modalBox">

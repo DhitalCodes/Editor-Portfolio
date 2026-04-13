@@ -433,5 +433,92 @@
         });
     }
 
+    //    9. AI CHATBOT
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotPanel = document.getElementById('chatbotPanel');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotForm = document.getElementById('chatbotForm');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSend = document.getElementById('chatbotSend');
+
+    const setChatbotOpen = (isOpen) => {
+        if (!chatbotPanel || !chatbotToggle) return;
+
+        chatbotPanel.classList.toggle('open', isOpen);
+        chatbotPanel.setAttribute('aria-hidden', String(!isOpen));
+        chatbotToggle.setAttribute('aria-expanded', String(isOpen));
+        chatbotToggle.setAttribute('aria-label', isOpen ? 'Close AI chat' : 'Open AI chat');
+
+        if (isOpen) chatbotInput?.focus();
+    };
+
+    const appendChatMessage = (text, sender = 'bot') => {
+        if (!chatbotMessages) return;
+
+        const messageItem = document.createElement('li');
+        messageItem.className = `chatbot-msg ${sender}`;
+        messageItem.textContent = text;
+        chatbotMessages.appendChild(messageItem);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    };
+
+    const getBotReply = (message) => {
+        const text = message.toLowerCase();
+
+        if (text.includes('price') || text.includes('cost') || text.includes('budget')) {
+            return 'Pricing depends on scope, edit style, and turnaround time. Share your project details in the contact form and you’ll get a custom quote.';
+        }
+
+        if (text.includes('service') || text.includes('offer') || text.includes('edit')) {
+            return 'Services include YouTube edits, social media reels, thumbnails, and motion graphics tailored to your content goals.';
+        }
+
+        if (text.includes('turnaround') || text.includes('delivery') || text.includes('time')) {
+            return 'Typical turnaround varies by complexity, but many projects are delivered within a few days after final requirements are confirmed.';
+        }
+
+        if (text.includes('contact') || text.includes('email') || text.includes('hire')) {
+            return 'You can use the contact section to send your project brief, or copy the email and reach out directly for faster discussion.';
+        }
+
+        return 'I can help with services, pricing, and timelines. Ask a specific question and I’ll guide you quickly.';
+    };
+
+    if (chatbotToggle && chatbotPanel && chatbotForm && chatbotInput) {
+        setChatbotOpen(false);
+        appendChatMessage('Hey! I’m your AI assistant. Ask me anything about editing services.', 'bot');
+
+        chatbotToggle.addEventListener('click', () => {
+            const isOpen = chatbotPanel.classList.contains('open');
+            setChatbotOpen(!isOpen);
+        });
+
+        chatbotClose?.addEventListener('click', () => setChatbotOpen(false));
+
+        chatbotForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const userText = chatbotInput.value.trim();
+            if (!userText) return;
+
+            appendChatMessage(userText, 'user');
+            chatbotInput.value = '';
+            chatbotSend.disabled = true;
+
+            setTimeout(() => {
+                appendChatMessage(getBotReply(userText), 'bot');
+                chatbotSend.disabled = false;
+                chatbotInput.focus();
+            }, 450);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && chatbotPanel.classList.contains('open')) {
+                setChatbotOpen(false);
+            }
+        });
+    }
+
     console.log('Frame By Aadi loaded.');
 })();
