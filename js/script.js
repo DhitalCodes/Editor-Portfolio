@@ -267,6 +267,8 @@
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const chatMessages = document.getElementById('chatMessages');
+    const BOT_REPLY_DELAY_MS = 450;
+    const contactEmail = document.getElementById('copyEmailBtn')?.querySelector('span')?.textContent?.trim();
 
     const appendChatMessage = (text, sender) => {
         if (!chatMessages || !text) return;
@@ -294,7 +296,9 @@
             return 'Typical turnaround is 24 to 72 hours depending on complexity and revisions.';
         }
         if (/(contact|email|hire|book)/.test(message)) {
-            return 'You can reach Aadi via the contact form or email: editoraadityaa@gmail.com';
+            return contactEmail
+                ? `You can reach Aadi via the contact form or email: ${contactEmail}`
+                : 'You can reach Aadi through the contact form below.';
         }
         if (/(portfolio|work|example|youtube)/.test(message)) {
             return 'You can explore recent edits in the Portfolio section, including YouTube videos and creative projects.';
@@ -313,7 +317,7 @@
             chatInput.value = '';
 
             const botReply = getBotReply(userMessage);
-            setTimeout(() => appendChatMessage(botReply, 'bot'), 450);
+            setTimeout(() => appendChatMessage(botReply, 'bot'), BOT_REPLY_DELAY_MS);
         });
     }
 
