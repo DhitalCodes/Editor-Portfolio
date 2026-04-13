@@ -263,7 +263,61 @@
 
 
 
-    //    8. CONTACT FORM FEEDBACK
+    //    8. AI CHAT BOT
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    const appendChatMessage = (text, sender) => {
+        if (!chatMessages || !text) return;
+
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${sender}`;
+        bubble.textContent = text;
+        chatMessages.appendChild(bubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const getBotReply = (rawMessage) => {
+        const message = rawMessage.toLowerCase();
+
+        if (/(hi|hello|hey)\b/.test(message)) {
+            return 'Hello! 👋 How can I help you today?';
+        }
+        if (/(service|offer|edit|motion|short)/.test(message)) {
+            return 'Aadi offers long-form edits, short-form reels/shorts, motion graphics, and complete post-production support.';
+        }
+        if (/(price|pricing|cost|budget|rate)/.test(message)) {
+            return 'Pricing depends on the project scope, style, and turnaround. Share your requirements in the contact form for an exact quote.';
+        }
+        if (/(time|turnaround|delivery|deadline)/.test(message)) {
+            return 'Typical turnaround is 24 to 72 hours depending on complexity and revisions.';
+        }
+        if (/(contact|email|hire|book)/.test(message)) {
+            return 'You can reach Aadi via the contact form or email: editoraadityaa@gmail.com';
+        }
+        if (/(portfolio|work|example|youtube)/.test(message)) {
+            return 'You can explore recent edits in the Portfolio section, including YouTube videos and creative projects.';
+        }
+
+        return 'Great question. Please share a few details about your project and Aadi will reply within 24 hours.';
+    };
+
+    if (chatForm && chatInput) {
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            appendChatMessage(userMessage, 'user');
+            chatInput.value = '';
+
+            const botReply = getBotReply(userMessage);
+            setTimeout(() => appendChatMessage(botReply, 'bot'), 450);
+        });
+    }
+
+    //    9. CONTACT FORM FEEDBACK
     const form = document.getElementById('contactForm');
     if (form) {
         const nameInput = document.getElementById('fname');
