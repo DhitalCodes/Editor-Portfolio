@@ -267,7 +267,8 @@
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const chatMessages = document.getElementById('chatMessages');
-    const BOT_RESPONSE_DELAY_MS = 420;
+    const BOT_RESPONSE_DELAY_MS = 500;
+    const CHAT_MAX_LENGTH = 250;
 
     const botReplyFor = (message) => {
         const text = message.toLowerCase();
@@ -301,7 +302,10 @@
     if (chatForm && chatInput && chatMessages) {
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const userText = chatInput.value.trim();
+            const userText = chatInput.value
+                .replace(/\s+/g, ' ')
+                .trim()
+                .slice(0, CHAT_MAX_LENGTH);
             if (!userText) return;
 
             addChatBubble(userText, 'user');
