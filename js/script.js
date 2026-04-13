@@ -472,7 +472,11 @@
 
         const maxMessages = 40;
         while (chatWindow.children.length > maxMessages) {
+            const previousLive = chatWindow.getAttribute('aria-live');
+            chatWindow.setAttribute('aria-live', 'off');
             chatWindow.removeChild(chatWindow.firstElementChild);
+            if (previousLive) chatWindow.setAttribute('aria-live', previousLive);
+            else chatWindow.removeAttribute('aria-live');
         }
 
         chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -495,10 +499,12 @@
 
         const submitBtn = chatForm.querySelector('button[type="submit"]');
         submitBtn?.setAttribute('disabled', 'true');
+        submitBtn?.setAttribute('aria-disabled', 'true');
 
         setTimeout(() => {
             addChatMessage(getBotReply(text), 'bot');
             submitBtn?.removeAttribute('disabled');
+            submitBtn?.setAttribute('aria-disabled', 'false');
             chatInput.focus();
         }, CHAT_RESPONSE_DELAY_MS);
     };
