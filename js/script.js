@@ -436,6 +436,7 @@
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const chatLog = document.getElementById('chatLog');
+    const BOT_REPLY_DELAY_MS = 420;
 
     const appendChatMessage = (role, text) => {
         if (!chatLog || !text) return;
@@ -487,7 +488,7 @@
 
             setTimeout(() => {
                 appendChatMessage('bot', buildBotReply(userText));
-            }, 420);
+            }, BOT_REPLY_DELAY_MS);
         });
     }
 
