@@ -725,6 +725,37 @@
     </div>
 </section>
 
+<!--    AI CHAT SECTION  -->
+<section id="ai-chat" class="ai-chat section-pad">
+    <div class="container">
+        <div class="section-label reveal-up">AI Assistant</div>
+        <h2 class="section-title reveal-up">Chat with my <span class="gradient-text">AI bot</span></h2>
+
+        <div class="glass-card ai-chat-card reveal-up">
+            <div class="ai-chat-window" id="aiChatWindow" role="log" aria-live="polite" aria-label="Chat conversation">
+                <div class="chat-message bot">
+                    <p>Hey! I’m Aadi’s AI assistant. Ask me about services, turnaround time, pricing style, or how to get started.</p>
+                </div>
+            </div>
+
+            <div class="ai-chat-quick-actions" id="aiChatQuickActions">
+                <button type="button" class="chat-chip" data-prompt="What services do you offer?">Services</button>
+                <button type="button" class="chat-chip" data-prompt="How long does a project usually take?">Turnaround</button>
+                <button type="button" class="chat-chip" data-prompt="How do we start a project?">How to start</button>
+            </div>
+
+            <form class="ai-chat-form" id="aiChatForm" autocomplete="off">
+                <label class="sr-only" for="aiChatInput">Type your message</label>
+                <input type="text" id="aiChatInput" name="message" maxlength="280" placeholder="Type a message..." required>
+                <button type="submit" class="btn-primary">
+                    <span>Send</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
 <!--   FOOTER   -->
 <footer class="footer">
     <div class="container">

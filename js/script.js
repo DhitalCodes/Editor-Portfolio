@@ -433,5 +433,83 @@
         });
     }
 
+    const aiChatForm = document.getElementById('aiChatForm');
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiChatWindow = document.getElementById('aiChatWindow');
+    const aiChatQuickActions = document.getElementById('aiChatQuickActions');
+
+    const appendChatMessage = (text, sender = 'bot', options = {}) => {
+        if (!aiChatWindow || !text) return null;
+
+        const message = document.createElement('div');
+        message.className = `chat-message ${sender}`;
+        if (options.typing) message.classList.add('typing');
+
+        const content = document.createElement('p');
+        content.textContent = text;
+        message.appendChild(content);
+        aiChatWindow.appendChild(message);
+        aiChatWindow.scrollTop = aiChatWindow.scrollHeight;
+        return message;
+    };
+
+    const getBotReply = (rawInput) => {
+        const input = rawInput.toLowerCase();
+
+        if (/(hello|hi|hey|namaste)/.test(input)) {
+            return "Hey! Great to meet you. Tell me what you're planning and I can suggest the best editing package.";
+        }
+        if (/(service|offer|what do you do|edit)/.test(input)) {
+            return 'Aadi offers video editing, motion graphics, and thumbnail design for YouTube and social media.';
+        }
+        if (/(price|cost|budget|rate)/.test(input)) {
+            return 'Pricing depends on scope, style, and deadline. Share your project details in the contact form and you’ll get a custom quote.';
+        }
+        if (/(time|turnaround|delivery|deadline)/.test(input)) {
+            return 'Typical turnaround is 24–72 hours for short-form edits and longer for complex projects.';
+        }
+        if (/(start|begin|hire|work together)/.test(input)) {
+            return 'To start, send your goals, reference style, footage length, and deadline through the contact form.';
+        }
+        if (/(location|where)/.test(input)) {
+            return 'Aadi is based in Kathmandu, Nepal and works with clients worldwide.';
+        }
+        return "Thanks for your message. I can help with services, pricing style, and project workflow—what would you like to know?";
+    };
+
+    if (aiChatForm && aiChatInput && aiChatWindow) {
+        const submitChatMessage = (messageText) => {
+            const userText = messageText.trim();
+            if (!userText) return;
+
+            appendChatMessage(userText, 'user');
+            const typingBubble = appendChatMessage('Assistant is typing…', 'bot', { typing: true });
+
+            aiChatInput.value = '';
+            aiChatInput.focus();
+
+            setTimeout(() => {
+                typingBubble?.remove();
+                appendChatMessage(getBotReply(userText), 'bot');
+
+                const allMessages = aiChatWindow.querySelectorAll('.chat-message');
+                if (allMessages.length > 50) {
+                    allMessages[0].remove();
+                }
+            }, 450);
+        };
+
+        aiChatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitChatMessage(aiChatInput.value);
+        });
+
+        aiChatQuickActions?.addEventListener('click', (e) => {
+            const chip = e.target.closest('.chat-chip');
+            if (!chip) return;
+            submitChatMessage(chip.dataset.prompt || chip.textContent || '');
+        });
+    }
+
     console.log('Frame By Aadi loaded.');
 })();
