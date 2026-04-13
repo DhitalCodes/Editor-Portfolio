@@ -433,5 +433,89 @@
         });
     }
 
+    //    9. AI CHAT WIDGET
+    const chatLauncher = document.getElementById('chatLauncher');
+    const chatWidget = document.getElementById('chatWidget');
+    const chatClose = document.getElementById('chatClose');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    const appendChatMessage = (text, sender = 'bot') => {
+        if (!chatMessages) return;
+        const msg = document.createElement('div');
+        msg.classList.add('chat-msg', sender === 'user' ? 'user-msg' : 'bot-msg');
+        msg.textContent = text;
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const getBotReply = (message) => {
+        const input = message.toLowerCase();
+
+        if (/(price|cost|budget|rate|package)/.test(input)) {
+            return 'Pricing depends on project scope. Share your requirements in the contact form and you will get a custom quote quickly.';
+        }
+        if (/(service|offer|edit|motion|thumbnail|reel)/.test(input)) {
+            return 'I can help with video editing, motion graphics, thumbnails, YouTube content, and social media reels.';
+        }
+        if (/(time|turnaround|delivery|deadline)/.test(input)) {
+            return 'Typical turnaround is based on complexity, but most projects start with clear milestones and timely delivery.';
+        }
+        if (/(available|hire|book|work|project)/.test(input)) {
+            return 'Yes, currently open to new projects. You can use the contact form to discuss your project details.';
+        }
+        if (/(hello|hi|hey)/.test(input)) {
+            return 'Hi there! Tell me what kind of content you need help with.';
+        }
+        return 'Thanks for your message! Please share your project goal, style, and deadline, and you will get tailored guidance.';
+    };
+
+    const openChat = () => {
+        if (!chatWidget || !chatLauncher) return;
+        chatWidget.hidden = false;
+        chatLauncher.setAttribute('aria-expanded', 'true');
+        chatInput?.focus();
+    };
+
+    const closeChat = () => {
+        if (!chatWidget || !chatLauncher) return;
+        chatWidget.hidden = true;
+        chatLauncher.setAttribute('aria-expanded', 'false');
+        chatLauncher.focus();
+    };
+
+    chatLauncher?.addEventListener('click', () => {
+        if (!chatWidget) return;
+        if (chatWidget.hidden) openChat();
+        else closeChat();
+    });
+
+    chatClose?.addEventListener('click', closeChat);
+
+    chatForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!chatInput) return;
+
+        const userText = chatInput.value.trim();
+        if (!userText) return;
+
+        appendChatMessage(userText, 'user');
+        chatInput.value = '';
+
+        const typingText = 'Typing...';
+        appendChatMessage(typingText, 'bot');
+
+        setTimeout(() => {
+            if (!chatMessages) return;
+            const lastBotMessage = chatMessages.lastElementChild;
+            if (lastBotMessage && lastBotMessage.textContent === typingText) {
+                lastBotMessage.textContent = getBotReply(userText);
+            } else {
+                appendChatMessage(getBotReply(userText), 'bot');
+            }
+        }, 420);
+    });
+
     console.log('Frame By Aadi loaded.');
 })();

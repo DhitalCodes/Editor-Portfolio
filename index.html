@@ -769,6 +769,34 @@
     </div>
 </div>
 
+<!-- ─── AI Chat Widget ─── -->
+<button id="chatLauncher" class="chat-launcher" type="button" aria-label="Open AI chat" aria-expanded="false" aria-controls="chatWidget">
+    <i class="fas fa-robot" aria-hidden="true"></i>
+    <span>AI Chat</span>
+</button>
+
+<section id="chatWidget" class="chat-widget glass-card" aria-label="AI chat assistant" hidden>
+    <div class="chat-head">
+        <div>
+            <strong>AI Assistant</strong>
+            <p>Ask about services, pricing, and availability.</p>
+        </div>
+        <button id="chatClose" class="chat-close" type="button" aria-label="Close AI chat">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div id="chatMessages" class="chat-messages" aria-live="polite">
+        <div class="chat-msg bot-msg">Hi! I’m your AI assistant. How can I help you today?</div>
+    </div>
+    <form id="chatForm" class="chat-form">
+        <label class="sr-only" for="chatInput">Type your message</label>
+        <input id="chatInput" type="text" placeholder="Type your message..." maxlength="400" autocomplete="off" required>
+        <button type="submit" aria-label="Send message">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        </button>
+    </form>
+</section>
+
 <!-- Scripts -->
 <script src="js/animations.js"></script>
 <script src="js/script.js"></script>
