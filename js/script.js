@@ -474,7 +474,7 @@
         if (/(location|where)/.test(input)) {
             return 'Aadi is based in Kathmandu, Nepal and works with clients worldwide.';
         }
-        return "Thanks for your message. I can help with services, pricing style, and project workflow—what would you like to know?";
+        return "Thanks for your message. I can help with services, pricing, style, and project workflow—what would you like to know?";
     };
 
     if (aiChatForm && aiChatInput && aiChatWindow) {
@@ -492,9 +492,8 @@
                 typingBubble?.remove();
                 appendChatMessage(getBotReply(userText), 'bot');
 
-                const allMessages = aiChatWindow.querySelectorAll('.chat-message');
-                if (allMessages.length > 50) {
-                    allMessages[0].remove();
+                while (aiChatWindow.querySelectorAll('.chat-message').length > 50) {
+                    aiChatWindow.querySelector('.chat-message')?.remove();
                 }
             }, 450);
         };
