@@ -1258,9 +1258,8 @@ ul { list-style: none; }
     .hero-stats { gap: 16px; padding: 16px; }
     .stat-num { font-size: 1.5rem; }
     .back-top { bottom: 20px; right: 20px; }
-    .chatbot-toggle { left: 20px; bottom: 20px; }
+    .chatbot-toggle { left: 20px; bottom: 20px; width: 44px; padding: 0; justify-content: center; }
     .chatbot-toggle span { display: none; }
-    .chatbot-toggle { width: 44px; padding: 0; justify-content: center; }
     .chatbot-panel { left: 20px; right: 20px; bottom: 74px; width: auto; }
 }
 .detail-val-email {
