@@ -4,9 +4,9 @@
 
 /* ── Keyframes ── */
 @keyframes orbFloat {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33%       { transform: translate(30px, -30px) scale(1.05); }
-    66%       { transform: translate(-20px, 20px) scale(0.97); }
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    33%       { transform: translate3d(26px, -26px, 0); }
+    66%       { transform: translate3d(-18px, 18px, 0); }
 }
 
 @keyframes pulse-dot {
@@ -16,7 +16,7 @@
 
 @keyframes glowPulse {
     0%, 100% { opacity: 0.18; transform: scale(1); }
-    50%       { opacity: 0.28; transform: scale(1.08); }
+    50%       { opacity: 0.26; transform: scale(1.03); }
 }
 
 @keyframes ringPulse {
@@ -71,7 +71,6 @@
 .reveal-left,
 .reveal-right {
     opacity: 0;
-    will-change: opacity, transform;
     transition: opacity 0.7s cubic-bezier(.25,.8,.25,1),
                 transform 0.7s cubic-bezier(.25,.8,.25,1);
 }

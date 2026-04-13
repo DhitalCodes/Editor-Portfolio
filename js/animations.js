@@ -28,23 +28,65 @@
     }
 
     /* ── Active nav link on scroll ── */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...document.querySelectorAll('section[id]')];
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+    const navById = new Map(
+        navLinks
+            .map((link) => {
+                const href = link.getAttribute('href') || '';
+                return href.startsWith('#') ? [href.slice(1), link] : null;
+            })
+            .filter(Boolean)
+    );
 
-    const activateNavLink = () => {
-        const scrollY = window.scrollY;
-        sections.forEach((section) => {
+    let sectionBounds = [];
+    let currentActiveId = '';
+    let ticking = false;
+
+    const computeSectionBounds = () => {
+        sectionBounds = sections.map((section) => {
             const top = section.offsetTop - 100;
-            const bottom = top + section.offsetHeight;
-            if (scrollY >= top && scrollY < bottom) {
-                navLinks.forEach((l) => l.classList.remove('active'));
-                const active = document.querySelector(`.nav-link[href="#${section.id}"]`);
-                if (active) active.classList.add('active');
-            }
+            return {
+                id: section.id,
+                top,
+                bottom: top + section.offsetHeight
+            };
         });
     };
 
-    window.addEventListener('scroll', activateNavLink, { passive: true });
+    const setActiveLink = (id) => {
+        if (!id || id === currentActiveId) return;
+
+        const prev = navById.get(currentActiveId);
+        const next = navById.get(id);
+        if (prev) prev.classList.remove('active');
+        if (next) next.classList.add('active');
+        currentActiveId = id;
+    };
+
+    const activateNavLink = () => {
+        const scrollY = window.scrollY;
+        for (let i = 0; i < sectionBounds.length; i += 1) {
+            const section = sectionBounds[i];
+            if (scrollY >= section.top && scrollY < section.bottom) {
+                setActiveLink(section.id);
+                break;
+            }
+        }
+    };
+
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            activateNavLink();
+            ticking = false;
+        });
+    };
+
+    computeSectionBounds();
+    window.addEventListener('resize', computeSectionBounds, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     activateNavLink();
 
 })();
