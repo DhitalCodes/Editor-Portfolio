@@ -439,6 +439,7 @@
     const chatWindow = document.getElementById('chatWindow');
     const promptButtons = document.querySelectorAll('[data-chat-prompt]');
     const CHAT_RESPONSE_DELAY_MS = 450;
+    const CHAT_MAX_MESSAGES = 40;
 
     const chatReplies = [
         {
@@ -470,8 +471,7 @@
         msg.appendChild(p);
         chatWindow.appendChild(msg);
 
-        const maxMessages = 40;
-        while (chatWindow.children.length > maxMessages) {
+        while (chatWindow.children.length > CHAT_MAX_MESSAGES) {
             const previousLive = chatWindow.getAttribute('aria-live');
             chatWindow.setAttribute('aria-live', 'off');
             chatWindow.removeChild(chatWindow.firstElementChild);
@@ -504,7 +504,7 @@
         setTimeout(() => {
             addChatMessage(getBotReply(text), 'bot');
             submitBtn?.removeAttribute('disabled');
-            submitBtn?.setAttribute('aria-disabled', 'false');
+            submitBtn?.removeAttribute('aria-disabled');
             chatInput.focus();
         }, CHAT_RESPONSE_DELAY_MS);
     };
