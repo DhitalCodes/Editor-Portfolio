@@ -433,5 +433,85 @@
         });
     }
 
+    //    9. AI CHAT WIDGET
+    const chatToggle = document.getElementById('chatToggle');
+    const chatPanel = document.getElementById('chatWidgetPanel');
+    const chatClose = document.getElementById('chatClose');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    const appendChatMessage = (text, sender = 'bot') => {
+        if (!chatMessages || !text) return;
+        const message = document.createElement('div');
+        message.className = `chat-message ${sender}`;
+        message.textContent = text;
+        chatMessages.appendChild(message);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const getBotReply = (message) => {
+        const text = message.toLowerCase();
+
+        if (text.includes('price') || text.includes('cost') || text.includes('budget')) {
+            return 'Pricing depends on project scope and turnaround. Share your project details in the contact form for a custom quote.';
+        }
+        if (text.includes('time') || text.includes('delivery') || text.includes('deadline')) {
+            return 'Most edits are delivered within 2–5 days, depending on complexity and revisions.';
+        }
+        if (text.includes('service') || text.includes('offer') || text.includes('what do you do')) {
+            return 'I offer video editing, social media content editing, and brand storytelling workflows.';
+        }
+        if (text.includes('contact') || text.includes('email') || text.includes('reach')) {
+            return 'You can reach me through the contact section on this page. I usually reply quickly.';
+        }
+        if (text.includes('hello') || text.includes('hi') || text.includes('hey')) {
+            return 'Hey! 👋 Tell me what kind of editing project you are planning.';
+        }
+        return 'Thanks for your message. I can help with services, pricing, and timelines. Ask me anything about your project.';
+    };
+
+    const openChat = () => {
+        if (!chatPanel) return;
+        chatPanel.classList.add('open');
+        chatPanel.setAttribute('aria-hidden', 'false');
+        chatToggle?.setAttribute('aria-expanded', 'true');
+        chatInput?.focus();
+    };
+
+    const closeChatPanel = () => {
+        if (!chatPanel) return;
+        chatPanel.classList.remove('open');
+        chatPanel.setAttribute('aria-hidden', 'true');
+        chatToggle?.setAttribute('aria-expanded', 'false');
+    };
+
+    if (chatPanel && chatToggle && chatForm && chatInput && chatMessages) {
+        appendChatMessage('Hi! I’m your AI assistant. Ask me about services, pricing, or turnaround time.');
+
+        chatToggle.addEventListener('click', () => {
+            if (chatPanel.classList.contains('open')) closeChatPanel();
+            else openChat();
+        });
+
+        chatClose?.addEventListener('click', closeChatPanel);
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userText = chatInput.value.trim();
+            if (!userText) return;
+
+            appendChatMessage(userText, 'user');
+            chatInput.value = '';
+
+            const reply = getBotReply(userText);
+            setTimeout(() => appendChatMessage(reply, 'bot'), 380);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && chatPanel.classList.contains('open')) closeChatPanel();
+        });
+    }
+
     console.log('Frame By Aadi loaded.');
 })();

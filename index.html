@@ -759,6 +759,31 @@
     <i class="fas fa-chevron-up"></i>
 </button>
 
+<!-- ─── AI Chat Widget ─── -->
+<button id="chatToggle" class="chat-toggle" type="button" aria-label="Open AI chat assistant" aria-expanded="false" aria-controls="chatWidgetPanel">
+    <i class="fas fa-robot" aria-hidden="true"></i>
+</button>
+
+<section class="chat-widget" id="chatWidgetPanel" aria-label="AI chat assistant" aria-hidden="true">
+    <header class="chat-widget-header">
+        <div class="chat-widget-title-wrap">
+            <span class="chat-widget-title">AI Assistant</span>
+            <span class="chat-widget-subtitle">Ask about services, pricing, or timeline</span>
+        </div>
+        <button id="chatClose" class="chat-widget-close" type="button" aria-label="Close AI chat">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </header>
+    <div id="chatMessages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+    <form id="chatForm" class="chat-form" autocomplete="off">
+        <label for="chatInput" class="sr-only">Type your message</label>
+        <input id="chatInput" type="text" name="message" placeholder="Type your message…" maxlength="280" required>
+        <button type="submit" class="chat-send" aria-label="Send message">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        </button>
+    </form>
+</section>
+
 <!-- ─── Media Modal ─── -->
 <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal-box" id="modalBox">
