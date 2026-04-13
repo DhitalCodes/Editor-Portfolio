@@ -433,5 +433,87 @@
         });
     }
 
+    //    9. AI CHAT BOT
+    const aiChatToggle = document.getElementById('aiChatToggle');
+    const aiChatPanel = document.getElementById('aiChatPanel');
+    const aiChatClose = document.getElementById('aiChatClose');
+    const aiChatForm = document.getElementById('aiChatForm');
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiChatMessages = document.getElementById('aiChatMessages');
+
+    const setChatOpen = (isOpen) => {
+        if (!aiChatPanel || !aiChatToggle) return;
+        aiChatPanel.classList.toggle('open', isOpen);
+        aiChatPanel.setAttribute('aria-hidden', String(!isOpen));
+        aiChatToggle.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) aiChatInput?.focus();
+    };
+
+    const appendChatMessage = (text, sender = 'bot') => {
+        if (!aiChatMessages || !text) return;
+
+        const messageEl = document.createElement('div');
+        messageEl.className = `ai-chat-msg ${sender}`;
+
+        const textEl = document.createElement('p');
+        textEl.textContent = text;
+
+        messageEl.appendChild(textEl);
+        aiChatMessages.appendChild(messageEl);
+        aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+    };
+
+    const getBotReply = (question) => {
+        const text = question.toLowerCase();
+
+        if (text.includes('price') || text.includes('cost') || text.includes('budget')) {
+            return 'Pricing depends on project scope and duration. Share your idea in the contact form and you will get a custom quote.';
+        }
+
+        if (text.includes('service') || text.includes('offer') || text.includes('do you do')) {
+            return 'Services include video editing, motion graphics, thumbnail design, and color grading for YouTube and social media content.';
+        }
+
+        if (text.includes('time') || text.includes('turnaround') || text.includes('deadline')) {
+            return 'Typical response time is within 24 hours, and delivery timelines are based on complexity and revision rounds.';
+        }
+
+        if (text.includes('tool') || text.includes('software') || text.includes('davinci') || text.includes('photoshop')) {
+            return 'Main tools are DaVinci Resolve, Photoshop, and Illustrator for editing, motion design, and thumbnails.';
+        }
+
+        if (text.includes('hello') || text.includes('hi') || text.includes('hey')) {
+            return 'Hey there! Ask me anything about portfolio work, services, or how to start a project.';
+        }
+
+        return 'Great question. Please share your project details through the contact form and you will get a tailored reply soon.';
+    };
+
+    aiChatToggle?.addEventListener('click', () => {
+        const isOpen = aiChatPanel?.classList.contains('open');
+        setChatOpen(!isOpen);
+    });
+
+    aiChatClose?.addEventListener('click', () => setChatOpen(false));
+
+    aiChatForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userText = aiChatInput?.value.trim();
+        if (!userText) return;
+
+        appendChatMessage(userText, 'user');
+        if (aiChatInput) aiChatInput.value = '';
+
+        setTimeout(() => {
+            appendChatMessage(getBotReply(userText), 'bot');
+        }, 420);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && aiChatPanel?.classList.contains('open')) {
+            setChatOpen(false);
+        }
+    });
+
     console.log('Frame By Aadi loaded.');
 })();

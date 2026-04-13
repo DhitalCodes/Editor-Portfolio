@@ -754,6 +754,40 @@
     </div>
 </footer>
 
+<!-- ─── AI Chat Widget ─── -->
+<div class="ai-chat-widget" id="aiChatWidget">
+    <button id="aiChatToggle" class="ai-chat-toggle" type="button" aria-controls="aiChatPanel" aria-expanded="false">
+        <i class="fas fa-robot" aria-hidden="true"></i>
+        <span>AI Chat</span>
+    </button>
+
+    <div class="ai-chat-panel glass-card" id="aiChatPanel" aria-hidden="true">
+        <div class="ai-chat-header">
+            <div>
+                <strong>AI Assistant</strong>
+                <p>Ask me about services and workflow</p>
+            </div>
+            <button id="aiChatClose" class="ai-chat-close" type="button" aria-label="Close chat">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="ai-chat-messages" id="aiChatMessages" aria-live="polite">
+            <div class="ai-chat-msg bot">
+                <p>Hi! 👋 I can help with services, turnaround time, tools, and portfolio details.</p>
+            </div>
+        </div>
+
+        <form class="ai-chat-form" id="aiChatForm">
+            <label for="aiChatInput" class="sr-only">Type your message</label>
+            <input type="text" id="aiChatInput" maxlength="180" placeholder="Type a message..." autocomplete="off">
+            <button type="submit" aria-label="Send message">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
 <!-- ─── Back to Top ─── -->
 <button id="backToTop" class="back-top" aria-label="Back to top">
     <i class="fas fa-chevron-up"></i>
