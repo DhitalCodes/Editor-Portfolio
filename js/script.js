@@ -267,6 +267,7 @@
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const chatMessages = document.getElementById('chatMessages');
+    const BOT_RESPONSE_DELAY_MS = 420;
 
     const botReplyFor = (message) => {
         const text = message.toLowerCase();
@@ -308,7 +309,7 @@
 
             setTimeout(() => {
                 addChatBubble(botReplyFor(userText), 'bot');
-            }, 420);
+            }, BOT_RESPONSE_DELAY_MS);
         });
     }
 
