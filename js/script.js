@@ -438,10 +438,11 @@
     const chatInput = document.getElementById('aiChatInput');
     const chatWindow = document.getElementById('chatWindow');
     const promptButtons = document.querySelectorAll('[data-chat-prompt]');
+    const CHAT_RESPONSE_DELAY_MS = 450;
 
     const chatReplies = [
         {
-            test: /(service|offer|do you do|what can you)/i,
+            test: /\b(services?|offers?|what can you do|what do you do)\b/i,
             answer: 'I can help with YouTube edits, social media reels, motion graphics, thumbnail design, and colour grading.'
         },
         {
@@ -450,7 +451,7 @@
         },
         {
             test: /(turnaround|delivery|how fast|deadline|time)/i,
-            answer: 'Most standard edits are delivered within 2–5 days, while larger projects may take longer depending on revision rounds.'
+            answer: 'Most standard edits are delivered within 2-5 days, while larger projects may take longer depending on revision rounds.'
         },
         {
             test: /(start|begin|work together|hire|project)/i,
@@ -499,7 +500,7 @@
             addChatMessage(getBotReply(text), 'bot');
             submitBtn?.removeAttribute('disabled');
             chatInput.focus();
-        }, 450);
+        }, CHAT_RESPONSE_DELAY_MS);
     };
 
     if (chatForm && chatInput && chatWindow) {
