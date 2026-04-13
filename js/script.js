@@ -433,5 +433,63 @@
         });
     }
 
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatLog = document.getElementById('chatLog');
+
+    const appendChatMessage = (role, text) => {
+        if (!chatLog || !text) return;
+
+        const msg = document.createElement('div');
+        msg.className = `chat-message ${role}`;
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble';
+        bubble.textContent = text;
+        msg.appendChild(bubble);
+        chatLog.appendChild(msg);
+        chatLog.scrollTop = chatLog.scrollHeight;
+    };
+
+    const buildBotReply = (userText) => {
+        const text = userText.toLowerCase();
+
+        if (text.includes('price') || text.includes('cost') || text.includes('budget')) {
+            return 'Pricing depends on project scope, style, and turnaround time. Share your idea in the contact form and Aadi will send a custom quote.';
+        }
+
+        if (text.includes('service') || text.includes('offer') || text.includes('do you do')) {
+            return 'Aadi offers video editing, motion graphics, thumbnail design, color grading, and short-form reel editing.';
+        }
+
+        if (text.includes('turnaround') || text.includes('delivery') || text.includes('deadline')) {
+            return 'Most projects are delivered within a few days to a week depending on complexity. Urgent delivery can be discussed.';
+        }
+
+        if (text.includes('contact') || text.includes('email') || text.includes('hire')) {
+            return 'You can reach out directly via the Contact section below. Typical response time is within 24 hours.';
+        }
+
+        if (text.includes('hello') || text.includes('hi') || text.includes('hey')) {
+            return 'Hey! Great to meet you. Tell me what kind of video or design support you need.';
+        }
+
+        return 'Thanks for your message! I can help with services, pricing, turnaround, and project planning. What would you like to know?';
+    };
+
+    if (chatForm && chatInput && chatLog) {
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userText = chatInput.value.trim();
+            if (!userText) return;
+
+            appendChatMessage('user', userText);
+            chatInput.value = '';
+
+            setTimeout(() => {
+                appendChatMessage('bot', buildBotReply(userText));
+            }, 420);
+        });
+    }
+
     console.log('Frame By Aadi loaded.');
 })();

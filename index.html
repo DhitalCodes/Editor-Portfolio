@@ -148,6 +148,7 @@
             <a href="#about" class="nav-link" data-label="About">About</a>
             <a href="#services" class="nav-link" data-label="Services">Services</a>
             <a href="#portfolio" class="nav-link" data-label="Portfolio">Portfolio</a>
+            <a href="#chat" class="nav-link" data-label="Chat">Chat</a>
             <a href="#contact" class="nav-link" data-label="Contact">Contact</a>
         </div>
 
@@ -175,6 +176,7 @@
         <a href="#about" class="mobile-link" data-close-menu>About</a>
         <a href="#services" class="mobile-link" data-close-menu>Services</a>
         <a href="#portfolio" class="mobile-link" data-close-menu>Portfolio</a>
+        <a href="#chat" class="mobile-link" data-close-menu>Chat</a>
         <a href="#contact" class="mobile-link" data-close-menu>Contact</a>
         <a href="#contact" class="btn-primary mobile-cta" data-close-menu>Hire Me</a>
     </div>
@@ -626,6 +628,38 @@
     </div>
 </section>
 
+<!--         AI CHAT SECTION           -->
+<section id="chat" class="chat section-pad">
+    <div class="container">
+        <div class="section-label reveal-up">AI Assistant</div>
+        <h2 class="section-title reveal-up">Chat with my <span class="gradient-text">AI bot</span></h2>
+
+        <div class="glass-card chat-card reveal-up">
+            <div class="chat-log" id="chatLog" aria-live="polite">
+                <div class="chat-message bot">
+                    <div class="chat-bubble">Hi! I’m Aadi’s AI assistant. Ask me about services, pricing, turnaround time, or how to get started.</div>
+                </div>
+            </div>
+            <form class="chat-form" id="chatForm">
+                <label for="chatInput" class="sr-only">Type your message</label>
+                <input
+                    type="text"
+                    id="chatInput"
+                    name="message"
+                    placeholder="Ask something..."
+                    autocomplete="off"
+                    maxlength="280"
+                    required
+                >
+                <button type="submit" class="btn-primary chat-send-btn">
+                    <span>Send</span>
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
 <!--    CONTACT SECTION  -->
 
 <section id="contact" class="contact section-pad">
@@ -740,6 +774,7 @@
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
                 <a href="#portfolio">Portfolio</a>
+                <a href="#chat">Chat</a>
                 <a href="#contact">Contact</a>
             </div>
             <div class="footer-socials">
