@@ -482,7 +482,7 @@
             return 'You can use the contact section to send your project brief, or copy the email and reach out directly for faster discussion.';
         }
 
-        return 'I can help with services, pricing, and timelines. Ask a specific question and I’ll guide you quickly.';
+        return 'Try asking about pricing, services, turnaround time, or how to contact for a project.';
     };
 
     if (chatbotToggle && chatbotPanel && chatbotForm && chatbotInput) {
@@ -505,10 +505,16 @@
             appendChatMessage(userText, 'user');
             chatbotInput.value = '';
             chatbotSend.disabled = true;
+            chatbotForm.setAttribute('aria-busy', 'true');
+            chatbotSend.setAttribute('aria-label', 'Sending message');
+            chatbotSend.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i>';
 
             setTimeout(() => {
                 appendChatMessage(getBotReply(userText), 'bot');
                 chatbotSend.disabled = false;
+                chatbotForm.setAttribute('aria-busy', 'false');
+                chatbotSend.setAttribute('aria-label', 'Send message');
+                chatbotSend.innerHTML = '<i class="fas fa-paper-plane"></i>';
                 chatbotInput.focus();
             }, 450);
         });
