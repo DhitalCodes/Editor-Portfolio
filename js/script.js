@@ -263,7 +263,56 @@
 
 
 
-    //    8. CONTACT FORM FEEDBACK
+    //    8. AI CHAT BOT
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    const botReplyFor = (message) => {
+        const text = message.toLowerCase();
+
+        if (text.includes('price') || text.includes('cost') || text.includes('budget')) {
+            return 'Pricing depends on scope, style, and turnaround. Share your project details in Contact and you’ll get a tailored quote.';
+        }
+        if (text.includes('service') || text.includes('edit') || text.includes('motion')) {
+            return 'I offer YouTube editing, reels/shorts editing, and motion graphics enhancements.';
+        }
+        if (text.includes('time') || text.includes('deadline') || text.includes('delivery')) {
+            return 'Most projects are delivered within a few days, depending on complexity and revision rounds.';
+        }
+        if (text.includes('contact') || text.includes('email') || text.includes('hire')) {
+            return 'You can reach out via the Contact section below. I typically respond within 24 hours.';
+        }
+
+        return 'Great question! I can help with services, pricing, timelines, and next steps. Tell me what kind of video you need.';
+    };
+
+    const addChatBubble = (text, role) => {
+        if (!chatMessages) return;
+
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${role}`;
+        bubble.textContent = text;
+        chatMessages.appendChild(bubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    if (chatForm && chatInput && chatMessages) {
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userText = chatInput.value.trim();
+            if (!userText) return;
+
+            addChatBubble(userText, 'user');
+            chatInput.value = '';
+
+            setTimeout(() => {
+                addChatBubble(botReplyFor(userText), 'bot');
+            }, 420);
+        });
+    }
+
+    //    9. CONTACT FORM FEEDBACK
     const form = document.getElementById('contactForm');
     if (form) {
         const nameInput = document.getElementById('fname');
