@@ -433,5 +433,88 @@
         });
     }
 
+    //    9. AI CHAT BOT
+    const chatForm = document.getElementById('aiChatForm');
+    const chatInput = document.getElementById('aiChatInput');
+    const chatWindow = document.getElementById('chatWindow');
+    const promptButtons = document.querySelectorAll('[data-chat-prompt]');
+
+    const chatReplies = [
+        {
+            test: /(service|offer|do you do|what can you)/i,
+            answer: 'I can help with YouTube edits, social media reels, motion graphics, thumbnail design, and colour grading.'
+        },
+        {
+            test: /(price|cost|budget|rate)/i,
+            answer: 'Pricing depends on scope, style, and turnaround. Share your project details in the contact form for a custom quote.'
+        },
+        {
+            test: /(turnaround|delivery|how fast|deadline|time)/i,
+            answer: 'Most standard edits are delivered within 2–5 days, while larger projects may take longer depending on revision rounds.'
+        },
+        {
+            test: /(start|begin|work together|hire|project)/i,
+            answer: 'You can start by sharing your goals, references, and timeline through the contact form. I usually reply within 24 hours.'
+        }
+    ];
+
+    const addChatMessage = (text, role = 'bot') => {
+        if (!chatWindow || !text) return;
+
+        const msg = document.createElement('div');
+        msg.className = `chat-msg ${role === 'user' ? 'chat-msg-user' : 'chat-msg-bot'}`;
+
+        const p = document.createElement('p');
+        p.textContent = text;
+        msg.appendChild(p);
+        chatWindow.appendChild(msg);
+
+        const maxMessages = 40;
+        while (chatWindow.children.length > maxMessages) {
+            chatWindow.removeChild(chatWindow.firstElementChild);
+        }
+
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    };
+
+    const getBotReply = (text) => {
+        const normalized = text.trim();
+        if (!normalized) return '';
+        const match = chatReplies.find(({ test }) => test.test(normalized));
+        if (match) return match.answer;
+        return 'Great question. For the best answer, send your exact project idea, timeline, and content type through the contact form and I will guide you next.';
+    };
+
+    const sendChatMessage = (rawText) => {
+        const text = rawText.trim();
+        if (!text || !chatForm || !chatInput) return;
+
+        addChatMessage(text, 'user');
+        chatInput.value = '';
+
+        const submitBtn = chatForm.querySelector('button[type="submit"]');
+        submitBtn?.setAttribute('disabled', 'true');
+
+        setTimeout(() => {
+            addChatMessage(getBotReply(text), 'bot');
+            submitBtn?.removeAttribute('disabled');
+            chatInput.focus();
+        }, 450);
+    };
+
+    if (chatForm && chatInput && chatWindow) {
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendChatMessage(chatInput.value);
+        });
+
+        promptButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const prompt = button.dataset.chatPrompt || button.textContent || '';
+                sendChatMessage(prompt);
+            });
+        });
+    }
+
     console.log('Frame By Aadi loaded.');
 })();

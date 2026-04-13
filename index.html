@@ -148,6 +148,7 @@
             <a href="#about" class="nav-link" data-label="About">About</a>
             <a href="#services" class="nav-link" data-label="Services">Services</a>
             <a href="#portfolio" class="nav-link" data-label="Portfolio">Portfolio</a>
+            <a href="#chat" class="nav-link" data-label="AI Chat">AI Chat</a>
             <a href="#contact" class="nav-link" data-label="Contact">Contact</a>
         </div>
 
@@ -175,6 +176,7 @@
         <a href="#about" class="mobile-link" data-close-menu>About</a>
         <a href="#services" class="mobile-link" data-close-menu>Services</a>
         <a href="#portfolio" class="mobile-link" data-close-menu>Portfolio</a>
+        <a href="#chat" class="mobile-link" data-close-menu>AI Chat</a>
         <a href="#contact" class="mobile-link" data-close-menu>Contact</a>
         <a href="#contact" class="btn-primary mobile-cta" data-close-menu>Hire Me</a>
     </div>
@@ -626,6 +628,37 @@
     </div>
 </section>
 
+<!--           AI CHAT SECTION            -->
+<section id="chat" class="ai-chat section-pad">
+    <div class="container">
+        <div class="section-label reveal-up">AI Assistant</div>
+        <h2 class="section-title reveal-up">Chat with my <span class="gradient-text">AI bot</span></h2>
+
+        <div class="glass-card chat-card reveal-up">
+            <div class="chat-window" id="chatWindow" aria-live="polite">
+                <div class="chat-msg chat-msg-bot">
+                    <p>Hey! I'm Aadi's AI assistant. Ask about services, pricing ranges, turnaround, or workflow.</p>
+                </div>
+            </div>
+
+            <div class="chat-quick-prompts" aria-label="Suggested prompts">
+                <button type="button" class="chat-prompt-btn" data-chat-prompt="What services do you offer?">Services</button>
+                <button type="button" class="chat-prompt-btn" data-chat-prompt="How fast is delivery?">Delivery</button>
+                <button type="button" class="chat-prompt-btn" data-chat-prompt="How do we start a project?">Get Started</button>
+            </div>
+
+            <form id="aiChatForm" class="chat-form" autocomplete="off">
+                <label for="aiChatInput" class="sr-only">Type your message</label>
+                <input id="aiChatInput" type="text" name="message" maxlength="240" placeholder="Type your message..." required>
+                <button type="submit" class="btn-primary">
+                    <span>Send</span>
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
 <!--    CONTACT SECTION  -->
 
 <section id="contact" class="contact section-pad">
@@ -740,6 +773,7 @@
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
                 <a href="#portfolio">Portfolio</a>
+                <a href="#chat">AI Chat</a>
                 <a href="#contact">Contact</a>
             </div>
             <div class="footer-socials">
