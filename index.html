@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com; frame-src https://www.youtube.com; connect-src 'self' formspree.io; manifest-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
 
     <!-- Primary SEO -->
     <title>FrameByAadi</title>
@@ -529,7 +534,7 @@
                             <button class="port-expand" data-type="video" data-video="4JeswCTxxtE" data-short="true">
                                 <i class="fas fa-play"></i>
                             </button>
-                            <a href="https://www.youtube.com/shorts/4JeswCTxxtE" target="_blank" class="port-yt">
+                            <a href="https://www.youtube.com/shorts/4JeswCTxxtE" target="_blank" rel="noopener noreferrer" class="port-yt">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
@@ -552,7 +557,7 @@
                             <button class="port-expand" data-type="video" data-video="jebYdFeSxSQ">
                                 <i class="fas fa-play"></i>
                             </button>
-                            <a href="https://www.youtube.com/watch?v=jebYdFeSxSQ" target="_blank" class="port-yt">
+                            <a href="https://www.youtube.com/watch?v=jebYdFeSxSQ" target="_blank" rel="noopener noreferrer" class="port-yt">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
@@ -576,7 +581,7 @@
                             <button class="port-expand" data-type="video" data-video="sZJepscNWSE" data-short="true">
                                 <i class="fas fa-play"></i>
                             </button>
-                            <a href="https://www.youtube.com/shorts/sZJepscNWSE" target="_blank" class="port-yt">
+                            <a href="https://www.youtube.com/shorts/sZJepscNWSE" target="_blank" rel="noopener noreferrer" class="port-yt">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
@@ -599,7 +604,7 @@
                             <button class="port-expand" data-type="video" data-video="BNxrlVX93dE">
                                 <i class="fas fa-play"></i>
                             </button>
-                            <a href="https://www.youtube.com/watch?v=BNxrlVX93dE" target="_blank" class="port-yt">
+                            <a href="https://www.youtube.com/watch?v=BNxrlVX93dE" target="_blank" rel="noopener noreferrer" class="port-yt">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
@@ -623,6 +628,7 @@
                             </button>
                             <a href="https://www.youtube.com/watch?v=QNMxsbK3Vsw"
                                target="_blank"
+                               rel="noopener noreferrer"
                                class="port-yt">
                                 <i class="fab fa-youtube"></i>
                             </a>
@@ -646,7 +652,7 @@
                             <button class="port-expand" data-type="video" data-video="HkovSKHnX4k">
                                 <i class="fas fa-play"></i>
                             </button>
-                            <a href="https://youtube.com/shorts/HkovSKHnX4k?feature=share" target="_blank" class="port-yt">
+                            <a href="https://youtube.com/shorts/HkovSKHnX4k?feature=share" target="_blank" rel="noopener noreferrer" class="port-yt">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
@@ -709,15 +715,15 @@
                     <div class="social-block">
                         <p class="social-label">Find me online</p>
                         <div class="social-row">
-                            <a href="https://www.youtube.com/@framebyaadioff" target="_blank" class="social-btn" aria-label="YouTube">
+                            <a href="https://www.youtube.com/@framebyaadioff" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">
                                 <i class="fab fa-youtube"></i>
                                 <span>YouTube</span>
                             </a>
-                            <a href="https://www.instagram.com/framebyaadi/" target="_blank" class="social-btn" aria-label="Instagram">
+                            <a href="https://www.instagram.com/framebyaadi/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
                                 <i class="fab fa-instagram"></i>
                                 <span>Instagram</span>
                             </a>
-                            <a href="https://www.linkedin.com/in/aaditya-dhital-a1789036b/" target="_blank" class="social-btn" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/aaditya-dhital-a1789036b/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
                                 <i class="fab fa-linkedin"></i>
                                 <span>LinkedIn</span>
                             </a>
@@ -731,23 +737,23 @@
                     <form id="contactForm" action="https://formspree.io/f/xkgppvya" method="POST" target="_blank">
                         <div class="form-row">
                             <div class="form-field">
-                                <input type="text" id="fname" name="name" placeholder=" " autocomplete="name" minlength="2" required>
-                                <label for="fname">Your Name</label>
+                                <input type="text" id="fname" name="name" placeholder=" " autocomplete="name" minlength="2" required aria-required="true">
+                                <label for="fname">Your Name <span class="required-indicator">*</span></label>
                                 <div class="field-feedback" id="fnameFeedback" aria-live="polite"></div>
                             </div>
                             <div class="form-field">
-                                <input type="email" id="femail" name="email" placeholder=" " autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required>
-                                <label for="femail">Your Email Address</label>
+                                <input type="email" id="femail" name="email" placeholder=" " autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required aria-required="true">
+                                <label for="femail">Your Email <span class="required-indicator">*</span></label>
                                 <div class="field-feedback" id="femailFeedback" aria-live="polite"></div>
                             </div>
                         </div>
                         <div class="form-field">
-                            <input type="text" id="fsubject" name="subject" placeholder=" " required>
-                            <label for="fsubject">Subject</label>
+                            <input type="text" id="fsubject" name="subject" placeholder=" " required aria-required="true">
+                            <label for="fsubject">Subject <span class="required-indicator">*</span></label>
                         </div>
                         <div class="form-field">
-                            <textarea id="fmessage" name="message" rows="5" placeholder=" " required></textarea>
-                            <label for="fmessage">Tell me about your project</label>
+                            <textarea id="fmessage" name="message" rows="5" placeholder=" " required aria-required="true"></textarea>
+                            <label for="fmessage">Tell me about your project <span class="required-indicator">*</span></label>
                         </div>
                         <button type="submit" class="btn-primary full-btn">
                             <span>Send Message</span>
@@ -779,9 +785,9 @@
                 <a href="#contact">Contact</a>
             </div>
             <div class="footer-socials">
-                <a href="https://www.youtube.com/@framebyaadioff" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/framebyaadi/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/aaditya-dhital-a1789036b/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@framebyaadioff" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/framebyaadi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/aaditya-dhital-a1789036b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
         <div class="footer-bottom">

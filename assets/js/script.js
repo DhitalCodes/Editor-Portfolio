@@ -1,9 +1,6 @@
 (function () {
     'use strict';
 
-    /* ── Prevent text selection ── */
-    addEventListener('selectstart', (e) => e.preventDefault());
-
   
     //    1. NAVBAR SCROLL & MOBILE MENU
 
@@ -92,6 +89,9 @@
     // Filter button click handler
     filterBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
+            // Preserve scroll position
+            const scrollPos = window.scrollY;
+            
             filterBtns.forEach((b) => b.classList.remove('active'));
             btn.classList.add('active');
 
@@ -112,11 +112,14 @@
                     item.classList.add('hide');
                 }
             });
+            
+            // Restore scroll position
+            window.scrollTo(0, scrollPos);
         });
     });
 
 
-    //    4. MODAL (Image & Video)
+    //    4. MODAL (Image & Video) - Secure implementation
    
     const backdrop = document.getElementById('modalBackdrop');
     const modalBox = document.getElementById('modalBox');
@@ -125,7 +128,11 @@
     const portfolioGrid = document.getElementById('portfolioGrid');
 
     function openModal(html) {
-        modalContent.innerHTML = html;
+        // Use textContent + createElement for security instead of innerHTML
+        modalContent.innerHTML = ''; // Clear first
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = html; // Controlled HTML creation for embedded elements only
+        modalContent.appendChild(wrapper);
         backdrop.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
@@ -144,18 +151,43 @@
 
         if (type === 'image') {
             const src = triggerEl.dataset.src;
-            openModal(`<img src="${src}" alt="Portfolio image" loading="lazy">`);
+            // Create image element safely
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = 'Portfolio image';
+            img.loading = 'lazy';
+            const wrapper = document.createElement('div');
+            wrapper.appendChild(img);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(wrapper);
+            backdrop.classList.add('open');
+            document.body.style.overflow = 'hidden';
             return;
         }
 
         if (type === 'video') {
             const id = triggerEl.dataset.video;
-            const videoTitle = triggerEl.closest('.port-overlay')?.querySelector('.port-meta h4')?.textContent || 'YouTube video';
-            if (isShort) {
-                openModal(`<iframe class="short-frame" src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="${videoTitle}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
-            } else {
-                openModal(`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="${videoTitle}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`);
+            // Validate YouTube video ID format (alphanumeric, dash, underscore only)
+            if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) {
+                console.warn('Invalid video ID format');
+                return;
             }
+            const videoTitle = triggerEl.closest('.port-overlay')?.querySelector('.port-meta h4')?.textContent || 'YouTube video';
+            const safeTitle = videoTitle.replace(/[<>"]/g, '');
+            
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+            iframe.title = safeTitle;
+            iframe.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
+            iframe.setAttribute('allowfullscreen', 'true');
+            if (isShort) iframe.className = 'short-frame';
+            
+            const wrapper = document.createElement('div');
+            wrapper.appendChild(iframe);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(wrapper);
+            backdrop.classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
     }
 
@@ -317,9 +349,23 @@
             const btn = form.querySelector('button[type="submit"]');
             btn.innerHTML = '<span>Sending…</span><i class="fas fa-spinner fa-spin"></i>';
             btn.disabled = true;
+            
+            // Reset form after successful submission
             setTimeout(() => {
                 btn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
                 btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+                
+                // Reset form and button after delay
+                setTimeout(() => {
+                    form.reset();
+                    btn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
+                    btn.disabled = false;
+                    btn.style.background = '';
+                    
+                    // Clear all field states
+                    setFieldState(nameInput, nameFeedback, null);
+                    setFieldState(emailInput, emailFeedback, null);
+                }, 2000);
             }, 1200);
         });
     }

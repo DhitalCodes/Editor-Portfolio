@@ -1,6 +1,4 @@
-
    /* Frame By Aadi — Animation CSS */
-
 
 /* ── Keyframes ── */
 @keyframes orbFloat {
@@ -28,7 +26,9 @@
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(-10px); }
 }
+
 .card-r { animation: floatYCenter 4s ease-in-out infinite 0.75s !important; }
+
 @keyframes floatYCenter {
     0%, 100% { transform: translateY(-50%); }
     50%       { transform: translateY(calc(-50% - 10px)); }
@@ -62,9 +62,24 @@
     to   { transform: rotate(360deg); }
 }
 
+/* ── Performance: will-change and GPU acceleration ── */
+.orb {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.port-img-wrap img {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.button {
+    will-change: transform;
+    backface-visibility: hidden;
+}
 
 /* Scroll Reveal Utility Classes */
-
 
 /* Base state — hidden */
 .reveal-up,
@@ -73,7 +88,9 @@
     opacity: 0;
     transition: opacity 0.7s cubic-bezier(.25,.8,.25,1),
                 transform 0.7s cubic-bezier(.25,.8,.25,1);
+    will-change: opacity, transform;
 }
+
 .reveal-up    { transform: translateY(40px); }
 .reveal-left  { transform: translateX(-40px); }
 .reveal-right { transform: translateX(40px); }
@@ -84,6 +101,7 @@
 .reveal-right.in-view {
     opacity: 1;
     transform: translate(0, 0);
+    will-change: auto;
 }
 
 /* Stagger delays — applied via inline --delay CSS var */
@@ -99,6 +117,7 @@
     transform: translateY(24px) scale(0.97);
     transition: opacity 0.6s cubic-bezier(.25,.8,.25,1),
                 transform 0.6s cubic-bezier(.25,.8,.25,1);
+    will-change: opacity, transform;
 }
 .portfolio-item.in-view {
     opacity: 1;
