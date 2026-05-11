@@ -31,13 +31,13 @@
     <meta name="twitter:image" content="https://framebyaadi.vercel.app/assets/images/pp.jpeg">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="192x192" href="favicon_io/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
-    <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
-    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicons/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" href="assets/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicons/site.webmanifest">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,8 +46,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/animation.css">
 
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="2vhYOoMxLPq_GuzyejDGBN77UKbU86C2197eSbjLl8I">
@@ -140,8 +140,8 @@
 <nav class="navbar" id="navbar">
     <div class="nav-inner">
         <a href="#home" class="nav-logo">
-           <div class="framebyaadi"><span class="logo-text frameby">FrameBy<span class="head-logo-text">Aadi.</span></span>
-        </a></div>
+           <div class="framebyaadi"><span class="logo-text frameby">FrameBy<span class="head-logo-text">Aadi.</span></span></div>
+        </a>
 
         <div class="nav-links" id="navLinks">
             <a href="#home" class="nav-link" data-label="Home">Home</a>
@@ -392,8 +392,7 @@
         <h2 class="section-title reveal-up">Frames that speak for themselves</h2>
 
         <div class="filters reveal-up">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="thumbnails">Thumbnails</button>
+            <button class="filter-btn active" data-filter="thumbnails">Thumbnails</button>
             <button class="filter-btn" data-filter="motion">Motion</button>
             <button class="filter-btn" data-filter="videos">Videos</button>
             <button class="filter-btn" data-filter="reels">Reels</button>
@@ -608,32 +607,29 @@
                 </div>
             </div>
 
-          <div class="portfolio-item reveal-up" data-category="videos">
-    <div class="port-img-wrap">
-        <img src="https://img.youtube.com/vi/QNMxsbK3Vsw/hqdefault.jpg"
-             alt="Personal Video – Frame By Aadi">
-        
-        <div class="port-overlay">
-            <div class="port-meta">
-                <span class="port-tag">Video Project</span>
-                <h4>My Personal Video</h4>
-                <p>Self-directed production</p>
+            <div class="portfolio-item reveal-up" data-category="videos">
+                <div class="port-img-wrap">
+                    <img src="https://img.youtube.com/vi/QNMxsbK3Vsw/hqdefault.jpg"
+                         alt="Personal Video – Frame By Aadi">
+                    <div class="port-overlay">
+                        <div class="port-meta">
+                            <span class="port-tag">Video Project</span>
+                            <h4>Another Personal Video</h4>
+                            <p>Self-directed production</p>
+                        </div>
+                        <div class="port-actions">
+                            <button class="port-expand" data-type="video" data-video="QNMxsbK3Vsw">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <a href="https://www.youtube.com/watch?v=QNMxsbK3Vsw"
+                               target="_blank"
+                               class="port-yt">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="port-actions">
-                <button class="port-expand" data-type="video" data-video="QNMxsbK3Vsw">
-                    <i class="fas fa-play"></i>
-                </button>
-
-                <a href="https://www.youtube.com/watch?v=QNMxsbK3Vsw"
-                   target="_blank"
-                   class="port-yt">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
 
 
             <div class="portfolio-item reveal-up" data-category="videos">
@@ -810,7 +806,7 @@
 </div>
 
 <!-- Scripts -->
-<script src="js/animations.js"></script>
-<script src="js/script.js"></script>
+<script src="assets/js/animations.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

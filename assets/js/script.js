@@ -11,12 +11,13 @@
     const hamburger = document.getElementById('navHamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLinks = document.querySelectorAll('[data-close-menu]');
+    const backTop = document.getElementById('backToTop');
 
     // Scroll state
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 40);
         // Back to top
-        backTop.classList.toggle('visible', window.scrollY > 400);
+        if (backTop) backTop.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
 
     // Hamburger toggle
@@ -67,6 +68,28 @@
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portItems = document.querySelectorAll('.portfolio-item');
 
+    // Function to apply filter
+    const applyFilter = (filter) => {
+        portItems.forEach((item) => {
+            const cat = item.dataset.category;
+            const show = cat === filter;
+
+            if (show) {
+                item.classList.remove('hide');
+                item.classList.add('in-view');
+            } else {
+                item.classList.add('hide');
+            }
+        });
+    };
+
+    // Initialize with default filter on page load
+    const activeBtn = document.querySelector('.filter-btn.active');
+    if (activeBtn) {
+        applyFilter(activeBtn.dataset.filter);
+    }
+
+    // Filter button click handler
     filterBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             filterBtns.forEach((b) => b.classList.remove('active'));
@@ -76,7 +99,7 @@
 
             portItems.forEach((item) => {
                 const cat = item.dataset.category;
-                const show = filter === 'all' || cat === filter;
+                const show = cat === filter;
 
                 if (show) {
                     item.classList.remove('hide');
@@ -190,8 +213,7 @@
     
     //    6. BACK TO TOP
     
-    const backTop = document.getElementById('backToTop');
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 
   

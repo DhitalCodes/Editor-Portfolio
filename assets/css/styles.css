@@ -4,7 +4,7 @@
     --accent-2: #00e5ff;
     --accent-3: #a855f7;
     --accent-4: #00ff41;
-    --accent-grad: linear-gradient(135deg, #00d4ff 0%, #00e5ff 50%, #a855f7 100%);
+    --accent-grad: linear-gradient(135deg, #00e5ff 0%, #00d4ff 20%, #a855f7 80%, #7c3aed 100%);
     --accent-grad-soft: linear-gradient(135deg, rgba(0,212,255,.2) 0%, rgba(0,229,255,.15) 100%);
 
     --bg: #0a0e27;
@@ -167,28 +167,36 @@ ul { list-style: none; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 16px 40px;
+    gap: 10px;
+    padding: 11px 28px;
     background: var(--accent-grad);
+    background-size: 100% 100%;
+    background-position: center;
+    background-clip: padding-box;
     color: #fff;
     border-radius: 999px;
     font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.04em;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: all 0.35s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     white-space: nowrap;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0,212,255,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 16px rgba(0, 212, 255, 0.1);
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.4;
+    height: auto;
+    min-height: 40px;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,212,255,0.15);
-    letter-spacing: 0.05em;
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 24px rgba(0, 212, 255, 0.15);
+    letter-spacing: 0.06em;
 }
 
 .btn-primary:active {
@@ -208,28 +216,33 @@ ul { list-style: none; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 15px 36px;
+    gap: 10px;
+    padding: 10px 26px;
     background: transparent;
     color: var(--accent);
     border-radius: 999px;
     border: 2px solid var(--accent);
     font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.03em;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: all 0.35s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     cursor: pointer;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.4;
+    height: auto;
+    min-height: 40px;
 }
 
 .btn-ghost:hover {
     color: #fff;
     border-color: var(--accent-2);
-    background: rgba(0,229,255,0.1);
-    box-shadow: 0 4px 12px rgba(0,229,255,0.12);
-    transform: translateY(-2px);
+    background: rgba(0, 229, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 229, 255, 0.12);
+    transform: translateY(-2px) translateZ(0);
 }
 
 .btn-ghost i {
@@ -726,29 +739,41 @@ ul { list-style: none; }
     color: var(--text-2);
     background: transparent;
     border: 2px solid var(--border);
-    transition: all 0.35s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.4;
+    height: auto;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filter-btn:hover {
     color: var(--accent-2);
     border-color: var(--accent-2);
-    background: rgba(0,229,255,0.06);
-    box-shadow: 0 0 8px rgba(0,229,255,0.12);
-    transform: translateY(-1px);
+    background: rgba(0, 229, 255, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 229, 255, 0.12);
+    transform: translateY(-1px) translateZ(0);
 }
 
 .filter-btn.active {
     background: var(--accent-grad);
+    background-size: 100% 100%;
+    background-position: center;
+    background-clip: padding-box;
     color: #fff;
     border-color: transparent;
-    box-shadow: 0 4px 12px rgba(0,212,255,0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 12px rgba(0, 212, 255, 0.1);
     font-weight: 700;
-    transform: scale(1.02);
+    transform: scale(1.02) translateZ(0);
+    overflow: visible;
 }
 
 .portfolio-grid {
