@@ -42,6 +42,7 @@
     let sectionBounds = [];
     let currentActiveId = '';
     let ticking = false;
+    const BOTTOM_THRESHOLD_PX = 1;
 
     const computeSectionBounds = () => {
         sectionBounds = sections.map((section) => {
@@ -79,7 +80,7 @@
         if (!matchedSectionId && sectionBounds.length) {
             const isAtPageBottom =
                 window.innerHeight + scrollY >=
-                document.documentElement.scrollHeight - 1;
+                document.documentElement.scrollHeight - BOTTOM_THRESHOLD_PX;
             if (isAtPageBottom) {
                 matchedSectionId = sectionBounds[sectionBounds.length - 1].id;
             }
