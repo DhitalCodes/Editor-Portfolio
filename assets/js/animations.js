@@ -66,13 +66,26 @@
 
     const activateNavLink = () => {
         const scrollY = window.scrollY;
+        let matchedSectionId = '';
+
         for (let i = 0; i < sectionBounds.length; i += 1) {
             const section = sectionBounds[i];
             if (scrollY >= section.top && scrollY < section.bottom) {
-                setActiveLink(section.id);
+                matchedSectionId = section.id;
                 break;
             }
         }
+
+        if (!matchedSectionId && sectionBounds.length) {
+            const isAtPageBottom =
+                Math.ceil(window.innerHeight + scrollY) >=
+                document.documentElement.scrollHeight;
+            if (isAtPageBottom) {
+                matchedSectionId = sectionBounds[sectionBounds.length - 1].id;
+            }
+        }
+
+        setActiveLink(matchedSectionId);
     };
 
     const onScroll = () => {
