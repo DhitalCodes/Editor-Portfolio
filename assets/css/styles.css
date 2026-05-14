@@ -503,6 +503,12 @@ ul { list-style: none; }
 
 /* Hero Visual */
 .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+.ambient-bg,
+.hero-text,
+.hero-visual {
+    will-change: transform;
+    backface-visibility: hidden;
+}
 .photo-wrapper {
     position: relative;
     width: 320px; height: 320px;
@@ -1391,6 +1397,16 @@ ul { list-style: none; }
     .footer-nav a { font-size: 0.8rem; }
     .footer-bottom { font-size: 0.73rem; padding-top: 16px; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .ambient-bg,
+    .hero-text,
+    .hero-visual {
+        will-change: auto;
+        transform: none !important;
+    }
+}
+
 .detail-val-email {
     color: var(--accent);
     font-weight: 600;

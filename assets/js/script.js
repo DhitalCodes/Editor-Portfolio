@@ -263,7 +263,66 @@
 
 
 
-    //    8. CONTACT FORM FEEDBACK
+    //    8. SUBTLE HERO PARALLAX
+    const heroSection = document.querySelector('.hero');
+    const ambientBg = document.querySelector('.ambient-bg');
+    const heroText = document.querySelector('.hero-text');
+    const heroVisual = document.querySelector('.hero-visual');
+
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const finePointerQuery = window.matchMedia('(pointer: fine)');
+
+    if (heroSection && ambientBg && heroText && heroVisual && !reducedMotionQuery.matches && finePointerQuery.matches) {
+        const state = { pointerX: 0.5, pointerY: 0.5, ticking: false };
+
+        const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+        const updateParallax = () => {
+            const heroRect = heroSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const heroCenter = heroRect.top + heroRect.height / 2;
+            const scrollProgress = clamp((viewportHeight * 0.45 - heroCenter) / viewportHeight, -1, 1);
+
+            const pointerOffsetX = clamp(state.pointerX - 0.5, -0.5, 0.5);
+            const pointerOffsetY = clamp(state.pointerY - 0.5, -0.5, 0.5);
+
+            ambientBg.style.transform = `translate3d(${pointerOffsetX * 8}px, ${scrollProgress * -12}px, 0)`;
+            heroText.style.transform = `translate3d(${pointerOffsetX * -4}px, ${scrollProgress * 6}px, 0)`;
+            heroVisual.style.transform = `translate3d(${pointerOffsetX * 6}px, ${scrollProgress * 10 + pointerOffsetY * -4}px, 0)`;
+
+            state.ticking = false;
+        };
+
+        const requestParallaxUpdate = () => {
+            if (state.ticking) return;
+            state.ticking = true;
+            requestAnimationFrame(updateParallax);
+        };
+
+        const setPointerFromEvent = (event) => {
+            const heroRect = heroSection.getBoundingClientRect();
+            const x = (event.clientX - heroRect.left) / heroRect.width;
+            const y = (event.clientY - heroRect.top) / heroRect.height;
+
+            state.pointerX = clamp(x, 0, 1);
+            state.pointerY = clamp(y, 0, 1);
+            requestParallaxUpdate();
+        };
+
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+        window.addEventListener('resize', requestParallaxUpdate, { passive: true });
+        heroSection.addEventListener('pointermove', setPointerFromEvent, { passive: true });
+        heroSection.addEventListener('pointerleave', () => {
+            state.pointerX = 0.5;
+            state.pointerY = 0.5;
+            requestParallaxUpdate();
+        }, { passive: true });
+
+        requestParallaxUpdate();
+    }
+
+
+    //    9. CONTACT FORM FEEDBACK
     const form = document.getElementById('contactForm');
     if (form) {
         const nameInput = document.getElementById('fname');
