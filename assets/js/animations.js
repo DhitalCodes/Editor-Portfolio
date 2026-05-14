@@ -91,7 +91,11 @@
 
     refreshSectionBounds();
     window.addEventListener('resize', refreshSectionBounds, { passive: true });
-    window.addEventListener('load', refreshSectionBounds);
+    if (document.readyState === 'complete') {
+        refreshSectionBounds();
+    } else {
+        window.addEventListener('load', refreshSectionBounds);
+    }
     document.addEventListener('sections:refresh', refreshSectionBounds);
     window.addEventListener('scroll', onScroll, { passive: true });
 
