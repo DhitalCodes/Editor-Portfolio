@@ -951,6 +951,12 @@ ul { list-style: none; }
     -moz-appearance: none;
     background-image: none !important;
 }
+.form-field input[type="email"]::-webkit-contacts-auto-fill-button,
+.form-field input[type="email"]::-webkit-credentials-auto-fill-button {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
 
 .form-field input[type="email"]:autofill {
     -webkit-autofill: none;

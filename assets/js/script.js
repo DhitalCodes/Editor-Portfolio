@@ -84,6 +84,7 @@
     const activeBtn = document.querySelector('.filter-btn.active');
     if (activeBtn) {
         applyFilter(activeBtn.dataset.filter);
+        document.dispatchEvent(new Event('sections:refresh'));
     }
 
     // Filter button click handler
@@ -115,6 +116,7 @@
             
             // Restore scroll position
             window.scrollTo(0, scrollPos);
+            document.dispatchEvent(new Event('sections:refresh'));
         });
     });
 
