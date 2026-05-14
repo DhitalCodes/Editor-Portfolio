@@ -83,6 +83,13 @@
                 document.documentElement.scrollHeight - BOTTOM_THRESHOLD_PX;
             if (isAtPageBottom) {
                 matchedSectionId = sectionBounds[sectionBounds.length - 1].id;
+            } else {
+                for (let i = sectionBounds.length - 1; i >= 0; i -= 1) {
+                    if (scrollY >= sectionBounds[i].top) {
+                        matchedSectionId = sectionBounds[i].id;
+                        break;
+                    }
+                }
             }
         }
 
