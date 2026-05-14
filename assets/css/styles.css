@@ -503,6 +503,12 @@ ul { list-style: none; }
 
 /* Hero Visual */
 .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+.ambient-bg,
+.hero-text,
+.hero-visual {
+    will-change: transform;
+    backface-visibility: hidden;
+}
 .photo-wrapper {
     position: relative;
     width: 320px; height: 320px;
@@ -941,10 +947,12 @@ ul { list-style: none; }
     color: var(--text);
     font-family: inherit;
     font-size: 0.9rem;
+    line-height: 1.5;
     transition: var(--transition);
     resize: none;
     outline: none;
 }
+
 .form-field input[type="email"] {
     appearance: none;
     -webkit-appearance: none;
@@ -988,13 +996,47 @@ ul { list-style: none; }
 }
 
 .field-feedback {
-    display: none;
-    margin-top: 8px;
-    font-size: 0.72rem;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
     color: var(--text-3);
+    pointer-events: none;
+    opacity: 0;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    z-index: 10;
 }
 
-.form-field.is-invalid .field-feedback { display: block; }
+.field-feedback::before {
+    content: '✓';
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.form-field.is-invalid .field-feedback { 
+    opacity: 1;
+}
+
+.form-field.is-valid .field-feedback {
+    opacity: 1;
+    color: rgba(0,255,65,0.85);
+}
+
+.form-field.is-invalid .field-feedback {
+    opacity: 1;
+    color: #f87171;
+}
+
+.form-field.is-invalid .field-feedback::before {
+    content: '✕';
+}
 
 .form-field.is-valid input {
     border-color: rgba(0,255,65,0.55);
@@ -1010,8 +1052,6 @@ ul { list-style: none; }
 
 .form-field.is-valid label { color: var(--accent); }
 .form-field.is-invalid label { color: #f87171; }
-
-.form-field.is-invalid .field-feedback { color: #f87171; }
 
 .full-btn {
     width: 100%;
@@ -1362,6 +1402,16 @@ ul { list-style: none; }
     .footer-nav a { font-size: 0.8rem; }
     .footer-bottom { font-size: 0.73rem; padding-top: 16px; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .ambient-bg,
+    .hero-text,
+    .hero-visual {
+        will-change: auto;
+        transform: none !important;
+    }
+}
+
 .detail-val-email {
     color: var(--accent);
     font-weight: 600;
@@ -1432,3 +1482,5 @@ ul { list-style: none; }
     border-color: rgba(248,113,113,0.4);
     background: rgba(248,113,113,0.1);
 }
+
+

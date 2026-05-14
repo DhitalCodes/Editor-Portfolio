@@ -70,8 +70,12 @@
             const section = sectionBounds[i];
             if (scrollY >= section.top && scrollY < section.bottom) {
                 setActiveLink(section.id);
-                break;
+                return;
             }
+        }
+        // If scrolled past all sections, activate the last one
+        if (sectionBounds.length > 0) {
+            setActiveLink(sectionBounds[sectionBounds.length - 1].id);
         }
     };
 
