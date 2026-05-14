@@ -85,7 +85,9 @@
             }
         }
 
-        setActiveLink(matchedSectionId);
+        if (matchedSectionId) {
+            setActiveLink(matchedSectionId);
+        }
     };
 
     const onScroll = () => {
