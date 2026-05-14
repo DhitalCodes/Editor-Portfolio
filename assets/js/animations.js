@@ -91,9 +91,7 @@
 
     refreshSectionBounds();
     window.addEventListener('resize', refreshSectionBounds, { passive: true });
-    if (document.readyState === 'complete') {
-        refreshSectionBounds();
-    } else {
+    if (document.readyState !== 'complete') {
         window.addEventListener('load', refreshSectionBounds);
     }
     document.addEventListener('sections:refresh', refreshSectionBounds);
