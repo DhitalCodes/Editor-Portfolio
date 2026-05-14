@@ -78,8 +78,8 @@
 
         if (!matchedSectionId && sectionBounds.length) {
             const isAtPageBottom =
-                Math.ceil(window.innerHeight + scrollY) >=
-                document.documentElement.scrollHeight;
+                window.innerHeight + scrollY >=
+                document.documentElement.scrollHeight - 1;
             if (isAtPageBottom) {
                 matchedSectionId = sectionBounds[sectionBounds.length - 1].id;
             }
