@@ -1,6 +1,53 @@
 (function () {
     'use strict';
 
+    //    0. UI/UX PROTECTIONS
+
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+    });
+
+    // Disable text selection keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        // Ctrl+A / Cmd+A - Select All
+        if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+C / Cmd+C - Copy (optional: can allow or block)
+        // Uncomment next line to disable copy
+        // if ((e.ctrlKey || e.metaKey) && e.key === 'c') { e.preventDefault(); return false; }
+    });
+
+    // Disable text selection on drag
+    document.addEventListener('mousedown', (e) => {
+        if (e.detail > 1) { // Double/triple click
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Disable developer tools inspect element (F12, Ctrl+Shift+I, Ctrl+Shift+K, Ctrl+Shift+C)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+            (e.ctrlKey && e.shiftKey && e.key === 'K') ||
+            (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Disable drag and drop of images
+    document.addEventListener('dragstart', (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+
   
     //    1. NAVBAR SCROLL & MOBILE MENU
 
@@ -506,6 +553,109 @@
                 copyToast.textContent = 'Tap to copy email';
             }
         });
+    }
+
+    //    10. PARALLAX CONTROLLER - APPLE-STYLE (Elements Move at Different Speeds)
+
+    class ParallaxController {
+        constructor() {
+            this.sections = Array.from(document.querySelectorAll('[data-parallax]'));
+            this.layers = new Map();
+            this.scrollY = window.scrollY;
+            this.ticking = false;
+            this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (this.prefersReducedMotion || this.sections.length === 0) return;
+
+            this.init();
+        }
+
+        init() {
+            this.sections.forEach((section) => {
+                const layersContainer = section.querySelector('.parallax-layers');
+                if (!layersContainer) return;
+
+                const layers = layersContainer.querySelectorAll('.parallax-layer');
+                if (layers.length === 0) return;
+
+                this.layers.set(section, Array.from(layers).map((layer) => ({
+                    element: layer,
+                    depth: parseFloat(layer.dataset.depth) || 0.5,
+                })));
+            });
+
+            window.addEventListener('scroll', () => this.onScroll(), { passive: true });
+            window.addEventListener('resize', () => this.onResize(), { passive: true });
+
+            this.updateParallax();
+        }
+
+        onScroll() {
+            this.scrollY = window.scrollY;
+            if (!this.ticking) {
+                this.ticking = true;
+                requestAnimationFrame(() => this.updateParallax());
+            }
+        }
+
+        onResize() {
+            // No need for expensive calculations on resize
+        }
+
+        updateParallax() {
+            const viewportHeight = window.innerHeight;
+
+            this.sections.forEach((section) => {
+                const sectionLayers = this.layers.get(section);
+                if (!sectionLayers) return;
+
+                const sectionRect = section.getBoundingClientRect();
+                
+                // Calculate how far the section is scrolled
+                const offset = -sectionRect.top;
+                const sectionHeight = sectionRect.height;
+                const scrollPercent = offset / viewportHeight;
+
+                sectionLayers.forEach((layer) => {
+                    // APPLE-STYLE DRAMATIC: Stronger parallax effect
+                    // depth 0.1 = moves at 10% speed (almost frozen, very dramatic)
+                    // depth 0.2 = moves at 20% speed (strongly stuck)
+                    // depth 0.3 = moves at 30% speed (visible layering)
+                    // Multiplier increased from 100 to 200 for more dramatic effect
+                    const yOffset = scrollPercent * 200 * layer.depth;
+                    
+                    layer.element.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+                });
+            });
+
+            this.ticking = false;
+        }
+    }
+
+    // Initialize parallax
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => new ParallaxController());
+    } else {
+        new ParallaxController();
+    }
+
+    //    11. SCROLL REVEAL ANIMATIONS (Enhanced)
+    const revealElements = document.querySelectorAll('[class*="reveal-"]');
+
+    if (revealElements.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        revealElements.forEach((el) => revealObserver.observe(el));
     }
 
     console.log('Frame By Aadi loaded.');

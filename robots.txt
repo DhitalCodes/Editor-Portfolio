@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
+Allow: /assets/
+Disallow: /node_modules/
 
+# Performance optimization
+Crawl-delay: 0.5
+
+# Sitemap
 Sitemap: https://framebyaadi.vercel.app/sitemap.xml
+
+# Google Search Console & Bing Webmaster Tools directives
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
